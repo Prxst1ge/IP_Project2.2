@@ -5,6 +5,8 @@ using Firebase.Database;
 using Firebase.Extensions;
 using System.Linq;
 using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 public class SignupForm : MonoBehaviour
 {
@@ -13,98 +15,103 @@ public class SignupForm : MonoBehaviour
     [SerializeField] private TMP_InputField displayNameField;
     [SerializeField] private TextMeshProUGUI errorText;
 
-    public void Signup()
+    // Simplified signup entry point using async/await
+    public async void Signup()
     {
-        Debug.Log("Signup Started");
-        // Obtain text from input fields
+        if (!Database.IsReady)
+        {
+            ShowError("Firebase not initialized yet. Please wait.");
+            return;
+        }
+
         var email = emailField.text;
         var password = passwordField.text;
         var displayName = displayNameField.text;
 
-        // Input validation
-        if (!email.Contains("@") || !email.Contains("."))
+        var validationError = ValidateInputs(email, password, displayName);
+        if (!string.IsNullOrEmpty(validationError))
         {
-            ShowError("Empty or invalid e-mail address");
+            ShowError(validationError);
             return;
         }
-        // TODO: More validations
-        if (password.Length < 6)
-        {
-            ShowError("Password must be at least 6 characters long");
-            return;
-        }
-        // If there are no integers in the password, show error
-        else if (!password.Any(char.IsDigit))
-        {
-            ShowError("Password must contain at least one number");
-            return;
-        }
-        if (displayName.Length < 3)
-        {
-            ShowError("Display name must be at least 3 characters long");
-            return;
-        }
-        else
-        {
-            ShowError(""); // Clear error
-        }
-        // Create the Firebase Auth user first, then save profile in the DB
+
         ShowError("Signing up...");
-        FirebaseAuth.DefaultInstance
-            .CreateUserWithEmailAndPasswordAsync(email, password)
-            .ContinueWithOnMainThread(authTask =>
+        try
+        {
+            // Create user
+            await FirebaseAuth.DefaultInstance.CreateUserWithEmailAndPasswordAsync(email, password);
+
+            var firebaseUser = FirebaseAuth.DefaultInstance.CurrentUser;
+            if (firebaseUser == null)
+                throw new Exception("Could not obtain authenticated user after signup.");
+
+            Debug.Log("User created: " + firebaseUser.UserId);
+
+            // Try updating profile (non-fatal)
+            try
             {
-                if (authTask.IsCanceled || authTask.IsFaulted)
-                {
-                    if (authTask.Exception != null) Debug.Log(authTask.Exception);
-                    ShowError("Error creating account: " + authTask.Exception?.GetBaseException().Message);
-                    return;
-                }
-
-                // Obtain the created user from the FirebaseAuth current user (authTask may be non-generic)
-                var firebaseUser = FirebaseAuth.DefaultInstance.CurrentUser;
-                if (firebaseUser == null)
-                {
-                    Debug.LogError("Could not obtain FirebaseUser from CurrentUser after signup.");
-                    ShowError("Signup failed: no authenticated user");
-                    return;
-                }
-
-                Debug.Log("User created: " + firebaseUser.UserId);
-
-                // Optionally update the Firebase Auth profile display name
                 var profile = new Firebase.Auth.UserProfile { DisplayName = displayName };
-                firebaseUser.UpdateUserProfileAsync(profile).ContinueWithOnMainThread(updateProfileTask =>
-                {
-                    if (updateProfileTask.IsCanceled || updateProfileTask.IsFaulted)
-                    {
-                        if (updateProfileTask.Exception != null) Debug.Log(updateProfileTask.Exception);
-                    }
+                await firebaseUser.UpdateUserProfileAsync(profile);
+            }
+            catch (Exception ex)
+            {
+                Debug.LogWarning("Profile update failed: " + ex.Message);
+            }
 
-                    // Now write the display name to Realtime Database under the authenticated user's id
-                    FirebaseDatabase.DefaultInstance
-                        .RootReference
-                        .Child("Game")
-                        .Child("Players")
-                        .Child(firebaseUser.UserId)
-                        .Child("Stats")
-                        .Child("DisplayName")
-                        .SetValueAsync(displayName)
-                        .ContinueWithOnMainThread(dbTask =>
-                        {
-                            if (dbTask.IsCanceled || dbTask.IsFaulted)
-                            {
-                                if (dbTask.Exception != null) Debug.Log(dbTask.Exception);
-                                ShowError("Error saving profile: " + dbTask.Exception?.GetBaseException().Message);
-                                return;
-                            }
+            // Save initial stats
+            var stats = BuildInitialStats(displayName);
+            var dbRef = FirebaseDatabase.DefaultInstance.RootReference
+                .Child("Game").Child("Players").Child(firebaseUser.UserId).Child("Stats");
 
-                            ShowError(""); // clear error
-                            Debug.Log("Signup completed and saved profile");
-                        });
-                });
-            });
+            await dbRef.SetValueAsync(stats);
+
+            ShowError("");
+            Debug.Log("Signup completed and saved profile");
+        }
+        catch (Exception e)
+        {
+            Debug.LogException(e);
+            ShowError("Signup failed: " + e.Message);
+        }
     }
+
+    // Simple validator that returns an error message or null/empty when valid
+    private string ValidateInputs(string email, string password, string displayName)
+    {
+        if (string.IsNullOrWhiteSpace(email) || !email.Contains("@") || !email.Contains("."))
+            return "Empty or invalid e-mail address";
+
+        if (string.IsNullOrEmpty(password) || password.Length < 6)
+            return "Password must be at least 6 characters long";
+
+        if (!password.Any(char.IsDigit))
+            return "Password must contain at least one number";
+
+        if (string.IsNullOrWhiteSpace(displayName) || displayName.Length < 3)
+            return "Display name must be at least 3 characters long";
+
+        return null;
+    }
+
+    // Builds the initial stats payload for the DB
+    private Dictionary<string, object> BuildInitialStats(string displayName)
+    {
+        return new Dictionary<string, object>
+        {
+            { "DisplayName", displayName },
+            { "AchievementsCollected", new Dictionary<string, object> { { "Speedrunner", false } } },
+            { "StageCompletionTimings", new Dictionary<string, object>
+                {
+                    { "Stage1", 0 },
+                    { "Stage2", 0 },
+                    { "Stage3", 0 },
+                    { "Stage4", 0 }
+                }
+            },
+            { "TotalTimePlayed", 0 }
+        };
+    }
+
     void ShowError(string error)
     {
         errorText.text = error;
@@ -113,6 +120,7 @@ public class SignupForm : MonoBehaviour
     // Add this helper so CurrentUserId() exists for the DB write
     private string CurrentUserId()
     {
+        if (!Database.IsReady) return "anon_" + Guid.NewGuid().ToString("N");
         var user = FirebaseAuth.DefaultInstance.CurrentUser;
         if (user != null) return user.UserId;
         // Fallback id when no authenticated user exists (keeps DB key safe)
