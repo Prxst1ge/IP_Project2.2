@@ -7,15 +7,15 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneChanger : MonoBehaviour
+public class EscapeDoor : MonoBehaviour
 {
     // Name of the scene to load
-    public string Scenechange = "Room 2 Escape";
+    public string escapeDoorScene = "Room 2 Escape";
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            SceneManager.LoadScene(Scenechange);
+            SceneManager.LoadScene(escapeDoorScene);
         }
     }
 }
