@@ -1,17 +1,30 @@
 using UnityEngine;
+using System.Collections;
 
 public class VRElevator : MonoBehaviour
 {
     public Transform topStop;
     public Transform bottomStop;
     public float speed = 2.0f;
+    public float startDelay = 0.5f;
 
     // Internal state
     private bool isMoving = false;
     private Transform currentTarget;
+    private Rigidbody rb;
 
+    void Start()
+    {
+        rb = GetComponent<Rigidbody>();
+        if (rb != null)
+        {
+            rb.isKinematic = true;
+            rb.interpolation = RigidbodyInterpolation.Interpolate;
+        }
+    }
 
-    void FixedUpdate()
+    // Update is called once per frame
+    void FixedUpdate() // Using FixedUpdate for consistent movement
     {
         if (isMoving && currentTarget != null)
         {
@@ -26,7 +39,7 @@ public class VRElevator : MonoBehaviour
         }
     }
 
-    // --- BUTTON FUNCTIONS ---
+    // BUTTON FUNCTIONS 
 
     // For going UP
     public void GoUp()
@@ -34,8 +47,7 @@ public class VRElevator : MonoBehaviour
         // Only move if we aren't already at the top
         if (Vector3.Distance(transform.position, topStop.position) > 0.1f)
         {
-            currentTarget = topStop;
-            isMoving = true;
+            StartCoroutine(StartMovingRoutine(topStop));
         }
     }
 
@@ -45,12 +57,21 @@ public class VRElevator : MonoBehaviour
         // Only move if we aren't already at the bottom
         if (Vector3.Distance(transform.position, bottomStop.position) > 0.1f)
         {
-            currentTarget = bottomStop;
-            isMoving = true;
+            StartCoroutine(StartMovingRoutine(bottomStop));
         }
     }
+    // --- THE DELAY LOGIC ---
+    IEnumerator StartMovingRoutine(Transform target)
+    {
+        // 1. Wait for the delay (allows physics to "settle" the player on the platform)
+        yield return new WaitForSeconds(startDelay);
 
-    // --- PLAYER STICKY LOGIC ---
+        // 2. NOW start moving
+        currentTarget = target;
+        isMoving = true;
+    }
+
+    // PLAYER STICKY LOGIC 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player") || other.GetComponent<Rigidbody>() != null)

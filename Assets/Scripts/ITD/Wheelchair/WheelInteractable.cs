@@ -30,7 +30,7 @@ public class WheelInteractable : XRBaseInteractable
     public Text label1;
     public Text label2;
 
-
+    // Initializes references
     private void Start()
     {
         m_Rigidbody = GetComponent<Rigidbody>();
@@ -40,8 +40,10 @@ public class WheelInteractable : XRBaseInteractable
         StartCoroutine(CheckForSlope());
     }
 
+    // When selection is made on this wheel object.
     protected override void OnSelectEntered(SelectEnterEventArgs eventArgs)
     {
+        Debug.Log("Wheel selected");
         base.OnSelectEntered(eventArgs);
 
         XRBaseInteractor interactor = eventArgs.interactorObject as XRBaseInteractor;
