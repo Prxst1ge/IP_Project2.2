@@ -33,8 +33,9 @@ public class WheelInteractable : XRBaseInteractable
     // Initializes references
     private void Start()
     {
-        m_Rigidbody = GetComponent<Rigidbody>();
-        wheelRadius = GetComponent<SphereCollider>().radius;
+        // Get references
+        m_Rigidbody = GetComponent<Rigidbody>(); // Rigidbody of the wheel
+        wheelRadius = GetComponent<SphereCollider>().radius; // Radius of the wheel collider
 
         // Slope check is run in coroutine at optimized intervals.
         StartCoroutine(CheckForSlope());
@@ -76,6 +77,15 @@ public class WheelInteractable : XRBaseInteractable
 
         // Instantiate new grab point at interactor's position.
         grabPoint = new GameObject($"{transform.name}'s grabPoint", typeof(GrabPoints), typeof(Rigidbody), typeof(FixedJoint));
+
+
+        // Ensure the grab point is on the "Wheelchair" layer so it follows the Physics Matrix rules.
+        grabPoint.layer = gameObject.layer;
+
+
+        // Ensure the grab point uses the "Wheelchair" Interaction Layer.
+        // Without this, your hand (which is looking for "Wheelchair") will reject the default grab point.
+        grabPoint.GetComponent<XRGrabInteractable>().interactionLayers = interactionLayers;
 
         grabPoint.transform.position = interactor.transform.position;
 
