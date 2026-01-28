@@ -76,7 +76,7 @@ public class WheelInteractable : XRBaseInteractable
         }
 
         // Instantiate new grab point at interactor's position.
-        grabPoint = new GameObject($"{transform.name}'s grabPoint", typeof(GrabPoints), typeof(Rigidbody), typeof(FixedJoint));
+        grabPoint = new GameObject($"{transform.name}'s grabPoint", typeof(GrabPoints), typeof(FixedJoint));
 
 
         // Ensure the grab point is on the "Wheelchair" layer so it follows the Physics Matrix rules.
