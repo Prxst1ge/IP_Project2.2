@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-2375167502471353312
+--- !u!114 &-5945286888409764246
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
@@ -63,18 +63,21 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Depth: 1
-    - _Displacement: 0.5
-    - _Foam_Depth: 0.3
-    - _Foam_Strength: 1
-    - _Foam_Tile: 1
-    - _Normal_Strength: 0.5
+    - _Depth: -2.63
+    - _Displacement: 2.5
+    - _Foam_Depth: 0.62
+    - _Foam_Strength: 0.37
+    - _Foam_Tile: 2.03
+    - _Normal_Strength: 0.495
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Smoothness: 0.5
-    - _Strength: 0.5
+    - _Smoothness: 0.769
+    - _Strength: 0.2
+    - _clamp_max: 0.51
     m_Colors:
-    - _Deep_Water_Color: {r: 0, g: 0.19607878, b: 1, a: 1}
-    - _Shallow_Water_Color: {r: 0, g: 0.7328506, b: 1, a: 1}
+    - _Deep_Water_Color: {r: 0.39215687, g: 0.92156863, b: 1, a: 1}
+    - _Shallow_Water_Color: {r: 0.5882353, g: 0.9529412, b: 1, a: 0.7882353}
+    - _nomral_uv: {r: 1.98, g: 2.58, b: 0, a: 0}
+    - _wave_tiling: {r: 0.68, g: 2.7, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
