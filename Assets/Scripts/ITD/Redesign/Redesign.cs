@@ -1,12 +1,13 @@
 /*
- * Script Name: Repair.cs
+ * Script Name: Redesign.cs
  * Student Name: Joel Wong Wan Hao
  * Date: 23/01/2026
- * Description: Handles repairing an object by swapping broken and fixed models.
+ * Description: Handles redesigning an object by swapping broken and fixed models.
  */
 using UnityEngine;
+using System.Collections;
 
-public class Repair : MonoBehaviour
+public class Redesign : MonoBehaviour
 {
     // References to the broken and fixed objects
     public GameObject brokenObject;
@@ -15,7 +16,7 @@ public class Repair : MonoBehaviour
     // Allow repeated repairs if needed
     public bool canBeRepeated = false;
     // Track repair state
-    private bool isRepaired = false;
+    public bool isRepaired = false;
 
     void Start()
     {
@@ -36,6 +37,6 @@ public class Repair : MonoBehaviour
 
         isRepaired = true;
 
-        Debug.Log("Repair Complete!");
+        Debug.Log("ReDesign Complete!");
     }
 }
