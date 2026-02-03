@@ -1,23 +1,26 @@
 /*
  * Script Name: TrainStationManager.cs
  * Student Name: Joel Wong Wan Hao
- * Date: 22/01/2026
+ * Date: 30/01/2026
  * Description: Controls the train station sequence.
  */
 using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class TrainStationManager : MonoBehaviour
 {
-    [Header("Settings")]
-    public float countdownTime = 30f;
-    public AudioSource announcementAudio;
+    public float countdownTime = 30f; // Time in seconds before train arrives
+    public AudioSource announcementAudio; // Audio source for announcement
+    public AudioSource trainApproachAudio; // Audio source for train approaching sound
+    public float approachSoundDelay = 20f; // Delay before train approach sound plays
 
-    [Header("Platform Triggers")]
-    public GameObject correctPlatformCollider;
-    public GameObject wrongPlatformCollider;
 
-    private bool hasSequenceStarted = false;
+    public GameObject correctPlatformCollider; // Collider for correct platform
+    public GameObject wrongPlatformCollider; // Collider for wrong platform
+
+    private bool hasSequenceStarted = false; // To prevent multiple starts
+
 
     void Start()
     {
@@ -48,5 +51,32 @@ public class TrainStationManager : MonoBehaviour
         if (wrongPlatformCollider) wrongPlatformCollider.SetActive(true);
 
         Debug.Log("Platforms are now active! Make your choice.");
+    }
+    private IEnumerator PlayApproachSound()
+    {
+        // Wait for the specific delay
+        yield return new WaitForSeconds(approachSoundDelay);
+
+        // Play the sound
+        trainApproachAudio.Play();
+        Debug.Log("Train approaching sound playing!");
+    }
+
+    public void PlayerChosePlatform(bool isCorrect)
+    {
+        // Load appropriate scene based on player's choice
+        if (isCorrect)
+        {
+            Debug.Log("Correct Platform! Loading Win Scene...");
+            if (!string.IsNullOrEmpty("Room 1 Right"))
+                SceneManager.LoadScene("Room 1 Right");
+        }
+        // Wrong choice
+        else
+        {
+            Debug.Log("Wrong Platform! Loading Lose Scene...");
+            if (!string.IsNullOrEmpty("Room 1 Wrong"))
+                SceneManager.LoadScene("Room 1 Wrong");
+        }
     }
 }
