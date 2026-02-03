@@ -74,4 +74,45 @@ public class Database : MonoBehaviour
         return tcs.Task;
     }
 
+    /// <summary>
+    /// Save stage completion timing to Firebase Realtime Database
+    /// Path: /Game/Players/{userId}/Stats/StageCompletionTimings/{stageName}
+    /// </summary>
+    public static async Task SaveStageCompletionTime(string stageName, int completionTimeInSeconds)
+    {
+        try
+        {
+            if (!IsReady)
+            {
+                Debug.LogError("Firebase is not initialized yet.");
+                return;
+            }
+
+            // Get the current user
+            var auth = FirebaseAuth.DefaultInstance;
+            if (auth.CurrentUser == null)
+            {
+                Debug.LogError("No user is currently authenticated.");
+                return;
+            }
+
+            string userId = auth.CurrentUser.UserId;
+
+            // Get the database reference
+            var dbRef = FirebaseDatabase.DefaultInstance.RootReference;
+
+            // Build the path: /Game/Players/{userId}/Stats/StageCompletionTimings/{stageName}
+            string path = $"Game/Players/{userId}/Stats/StageCompletionTimings/{stageName}";
+
+            // Set the value
+            await dbRef.Child(path).SetValueAsync(completionTimeInSeconds);
+
+            Debug.Log($"Successfully saved {stageName} completion time: {completionTimeInSeconds}s");
+        }
+        catch (Exception ex)
+        {
+            Debug.LogError($"Failed to save stage completion time: {ex.Message}");
+        }
+    }
+
 }
