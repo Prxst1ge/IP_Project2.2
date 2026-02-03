@@ -9,11 +9,8 @@ public class StopWatch : MonoBehaviour
     public TextMeshProUGUI timerText; // Drag your UI text here
     private float elapsedTime;
     private bool isRunning = false;
-    public string currentStageName; // Track which stage this timer is for
-    
-    [Header("Scene Settings")]
-    [Tooltip("Is this the final scene of the stage? Timer will save when this scene completes.")]
-    public bool isFinalScene = false;
+    private string currentStageName; // Track which stage this timer is for
+    private bool isFinalScene = false; // Track if this is the final scene of the stage
 
     void Awake()
     {
@@ -36,8 +33,16 @@ public class StopWatch : MonoBehaviour
         // Only start the timer if this is a new instance
         if (Instance == this && !isRunning)
         {
-            StartTimer();
+            // Scene loader will initialize stage name and final scene state
+            // Timer will start once initialized
+            elapsedTime = 0f;
+            isRunning = false; // Will be started by InitializeForStage
+            if (timerText != null)
+            {
+                UpdateTimerDisplay();
+            }
         }
+
     }
 
     void Update()
@@ -53,25 +58,42 @@ public class StopWatch : MonoBehaviour
     }
     
     /// <summary>
+    /// Initialize the timer for a specific stage and scene
+    /// Call this from the Scene Loader when entering a scene
+    /// If it's a new stage, resets the timer. If continuing the same stage, keeps accumulating time.
+    /// </summary>
+    public void InitializeForStage(string stageName, bool isFinal)
+    {
+        // Only reset timer if this is a NEW stage
+        if (currentStageName != stageName)
+        {
+            elapsedTime = 0f;
+            Debug.Log($"New stage '{stageName}' detected. Timer reset.");
+        }
+        else
+        {
+            Debug.Log($"Continuing stage '{stageName}'. Time carries over.");
+        }
+
+        currentStageName = stageName;
+        isFinalScene = isFinal;
+        StartTimer();
+        Debug.Log($"Timer initialized for stage: {currentStageName} (Final scene: {isFinal})");
+    }
+
+    /// <summary>
     /// Call this when the player reaches the end of a scene
-    /// If it's the final scene, it will save the time to Firebase
+    /// If it's the final scene, it will save the time to Firebase and destroy the singleton
     /// </summary>
     public async void CompleteScene()
     {
         if (isFinalScene)
         {
             await StopTimerAndSave();
+            // Destroy the singleton so it doesn't persist to the main hub
+            Destroy(gameObject);
         }
         // Otherwise, timer keeps running into the next scene
-    }
-
-    /// <summary>
-    /// Initialize the timer for a specific stage
-    /// </summary>
-    public void InitializeForStage(string stageName)
-    {
-        currentStageName = stageName;
-        elapsedTime = 0f;
     }
 
     public void StartTimer() => isRunning = true;
@@ -84,13 +106,14 @@ public class StopWatch : MonoBehaviour
     /// <summary>
     /// Stop the timer and save the completion time to Firebase
     /// </summary>
-    public async Task StopTimerAndSave()
+    private async Task StopTimerAndSave()
     {
         StopTimer();
         if (!string.IsNullOrEmpty(currentStageName))
         {
             int completionTime = Mathf.FloorToInt(elapsedTime);
             await Database.SaveStageCompletionTime(currentStageName, completionTime);
+            Debug.Log($"Stage '{currentStageName}' completed in {completionTime} seconds and saved to Firebase.");
         }
         else
         {

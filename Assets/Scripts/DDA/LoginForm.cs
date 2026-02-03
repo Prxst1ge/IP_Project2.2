@@ -17,6 +17,13 @@ public class LoginForm : MonoBehaviour
     // Replaces Signup(): performs email/password sign-in
     public async void Login()
     {
+        // Check if all UI elements are assigned
+        if (emailField == null || passwordField == null || errorText == null)
+        {
+            Debug.LogError("LoginForm: email, password, or error text field is not assigned in the Inspector!");
+            return;
+        }
+
         if (!Database.IsReady)
         {
             ShowError("Firebase not initialized yet. Please wait.");
@@ -96,7 +103,14 @@ public class LoginForm : MonoBehaviour
 
     void ShowError(string error)
     {
-        errorText.text = error;
+        if (errorText != null)
+        {
+            errorText.text = error;
+        }
+        else
+        {
+            Debug.LogError("Error text field not assigned: " + error);
+        }
     }
 
     // Add this helper so CurrentUserId() exists for the DB write
