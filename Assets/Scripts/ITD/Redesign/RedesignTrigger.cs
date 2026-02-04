@@ -13,10 +13,8 @@ public class RedesignTrigger : MonoBehaviour
     public GameObject explanationUI; // The "Why this design is better" info
 
     public Redesign redesignScript; // For the object with the redesign script
+    public float spawnDistance = 1.5f; // Distance from player to spawn UI
 
-    public bool hasClosedExplanation = false; // To track if explanation was closed
-
-    private bool playerIsInside = false; // To track if player is in trigger
 
     private void Start()
     {
@@ -30,11 +28,15 @@ public class RedesignTrigger : MonoBehaviour
         // Checks if the 'other' object is the VR Player (usually by Tag)
         if (other.CompareTag("Player"))
         {
-            if (uiClue != null) uiClue.SetActive(true);
-        }
-        if (other.CompareTag("Player") && !redesignScript.isRepaired)
-        {
-            uiClue.SetActive(true); // Only show UI if the work is NOT done
+            if (!redesignScript.isRepaired)
+            {
+                // Only move and show if it's currently hidden
+                if (uiClue != null && !uiClue.activeSelf)
+                {
+                    PositionUIInFrontOfPlayer(uiClue);
+                    uiClue.SetActive(true);
+                }
+            }
         }
     }
 
@@ -42,34 +44,64 @@ public class RedesignTrigger : MonoBehaviour
     {
         if (other.CompareTag("Player")) // When player leaves trigger
         {
-            if (uiClue != null) uiClue.SetActive(false);
+            if (uiClue != null) uiClue.SetActive(false); // Hide the clue UI
         }
     }
 
     // Called by the UI Button to close the explanation
     public void CloseExplanation()
     {
-        // 1. Remember that we closed it
-        hasClosedExplanation = true;
+        // Tell the redesign script that explanation has been seen
+        redesignScript.explanationSeen = true;
 
-        // 2. Hide the UI immediately
         if (explanationUI != null) explanationUI.SetActive(false);
     }
 
-    private void Update()
+    void Update()
     {
-        // Check the redesign state each frame
-        if (redesignScript.isRepaired && !hasClosedExplanation)
+        // If repaired AND explanation NOT seen yet
+        if (redesignScript.isRepaired && !redesignScript.explanationSeen)
         {
-            if (explanationUI != null) explanationUI.SetActive(true);
-            if (uiClue != null) uiClue.SetActive(false); // Hide clue as it's no longer needed
+            // Show Explanation UI
+            if (explanationUI != null && !explanationUI.activeSelf)
+            {
+                PositionUIInFrontOfPlayer(explanationUI);
+                explanationUI.SetActive(true);
+            }
+            // Hide Clue UI
+            if (uiClue != null) uiClue.SetActive(false);
         }
-        // If not repaired
-        else if (!redesignScript.isRepaired)
+        else
         {
-            // Ensure Explanation is hidden if not repaired
+            // If explanation IS seen, ensure UI is hidden
             if (explanationUI != null) explanationUI.SetActive(false);
         }
+    }
+
+    void PositionUIInFrontOfPlayer(GameObject uiObject)
+    {
+        Camera playerCam = Camera.main; // Automatically finds camera tagged "MainCamera"
+
+        if (playerCam == null)
+        {
+            Debug.LogError("Could not find MainCamera! Ensure your VR Headset Camera is tagged 'MainCamera'.");
+            return;
+        }
+
+        // Calculate position: Start at camera, move forward X meters
+        Vector3 targetPos = playerCam.transform.position + (playerCam.transform.forward * spawnDistance);
+
+        // Lock Height: Keep it at eye level 
+        targetPos.y = playerCam.transform.position.y;
+
+        // Apply Position
+        uiObject.transform.position = targetPos;
+
+        // Rotate to face the camera
+        uiObject.transform.LookAt(playerCam.transform);
+
+        // Flip 180 degrees (because UI usually faces 'backwards' by default)
+        uiObject.transform.Rotate(0, 180, 0);
     }
 
 }

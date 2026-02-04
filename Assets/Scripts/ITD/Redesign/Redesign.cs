@@ -18,6 +18,8 @@ public class Redesign : MonoBehaviour
     // Track repair state
     public bool isRepaired = false;
 
+    public bool explanationSeen = false; // Whether the explanation UI has been seen
+
     void Start()
     {
         // Ensure the correct starting state

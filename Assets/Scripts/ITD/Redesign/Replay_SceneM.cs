@@ -2,28 +2,24 @@
  * Script Name: Replay_SceneM.cs
  * Student Name: Joel Wong Wan Hao
  * Date: 1/02/2026
- * Description: Manages the replay scene after player has completed all redesign.
+ * Description: Manages the transit to replay scene after player has completed all redesign.
  */
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class Replay_SceneM : MonoBehaviour
 {
-
-    public string sceneToLoad = "Level2"; // Name of the next scene to load
-    public GameObject confirmationCanvas; // Canvas to confirm replay
-
-
-    public Redesign[] itemsToFix; // An array (list) of redesign scripts
-    public RedesignTrigger[] redesignZones;
+    public GameObject exitDoorObject; // The door to exit the scene
+    public Redesign[] itemsToFix; // Array of redesign items to check
+    public AudioSource successAudio; // Audio source for success sound
 
     private bool allTasksComplete = false;
     private bool levelIsLoading = false; // Safety switch to prevent crashing
 
     void Start()
     {
-        // Ensure the popup is hidden at the start
-        if (confirmationCanvas != null) confirmationCanvas.SetActive(false);
+        // Ensure the exit door is hidden at the start
+        if (exitDoorObject != null) exitDoorObject.SetActive(false);
     }
 
     void Update()
@@ -35,37 +31,29 @@ public class Replay_SceneM : MonoBehaviour
 
         if (CheckIfAllDone())
         {
-            Debug.Log("All items fixed and read! Showing Next Level UI.");
+            Debug.Log("All items fixed and explained! Spawning Exit Door.");
             allTasksComplete = true; // Mark as done so this block only runs once
 
-            // Showing the confirmation canvas
-            if (confirmationCanvas != null) confirmationCanvas.SetActive(true);
+            // Showing the door to go to the next scene
+            if (exitDoorObject != null)
+            {
+                exitDoorObject.SetActive(true);
+            }
+            if (successAudio != null)
+            {
+                successAudio.Play();
+            }
         }
     }
 
     private bool CheckIfAllDone()
     {
-        foreach (RedesignTrigger zone in redesignZones)
+        foreach (Redesign item in itemsToFix)
         {
-            // Whether the redesign in this zone is done
-            if (!zone.redesignScript.isRepaired) return false;
-
-            // Whether the explanation UI has been closed
-            if (!zone.hasClosedExplanation) return false;
+            if (!item.isRepaired) return false;
         }
 
         // If all zones are done and explanations closed
         return true;
     }
-
-    // Called by the UI Button to load the next level
-    public void LoadNextLevel()
-    {
-        if (!levelIsLoading)
-        {
-            levelIsLoading = true;
-            SceneManager.LoadScene(sceneToLoad);
-        }
-    }
-
 }

@@ -5,32 +5,39 @@
  * Description: Forces the player to spawn at this position when the scene starts.
  */
 using UnityEngine;
+using System.Collections;
 
 public class SpawnPosition : MonoBehaviour
 {
-    public GameObject playerRig; // Reference to the VR Player Rig
+    [Header("Drag Objects Here")]
+    public Transform player;      // Your Player object
+    public Transform spawnPoint;  // The Empty GameObject you created
 
     void Start()
     {
-        // This will force the player to this spawn position at the start of the scene
-        if (playerRig == null)
+        MovePlayerToSpawn();
+    }
+
+    void MovePlayerToSpawn()
+    {
+        if (player == null || spawnPoint == null)
         {
-            playerRig = GameObject.FindGameObjectWithTag("Player");
+            Debug.LogError("SpawnManager: You forgot to assign the Player or Spawn Point in the Inspector!");
+            return;
         }
 
-        if (playerRig != null)
-        {
-            // Teleport the player to THIS object's position
-            playerRig.transform.position = transform.position;
+        // 1. If the player uses a CharacterController, we must disable it briefly
+        // or the physics engine might override our teleportation.
+        CharacterController cc = player.GetComponent<CharacterController>();
+        if (cc != null) cc.enabled = false;
 
-            // Teleport the player to THIS object's rotation (facing direction)
-            playerRig.transform.rotation = transform.rotation;
+        // 2. Move position and rotation to match the Empty
+        player.position = spawnPoint.position;
+        player.rotation = spawnPoint.rotation;
 
-            Debug.Log("Player forced to spawn position: " + gameObject.name);
-        }
-        else
-        {
-            Debug.LogError("ForceSpawnPosition Error: No Player Rig found! Make sure your VR Rig is tagged 'Player'.");
-        }
+        // 3. Re-enable CharacterController
+        if (cc != null) cc.enabled = true;
+
+        Debug.Log("Player moved to Spawn Point");
     }
 }

@@ -40,6 +40,7 @@ public class TrainStationManager : MonoBehaviour
         if (announcementAudio != null) announcementAudio.Play();
 
         StartCoroutine(CountdownRoutine());
+        StartCoroutine(PlayApproachSound());
     }
 
     private IEnumerator CountdownRoutine()
@@ -62,21 +63,4 @@ public class TrainStationManager : MonoBehaviour
         Debug.Log("Train approaching sound playing!");
     }
 
-    public void PlayerChosePlatform(bool isCorrect)
-    {
-        // Load appropriate scene based on player's choice
-        if (isCorrect)
-        {
-            Debug.Log("Correct Platform! Loading Win Scene...");
-            if (!string.IsNullOrEmpty("Room 1 Right"))
-                SceneManager.LoadScene("Room 1 Right");
-        }
-        // Wrong choice
-        else
-        {
-            Debug.Log("Wrong Platform! Loading Lose Scene...");
-            if (!string.IsNullOrEmpty("Room 1 Wrong"))
-                SceneManager.LoadScene("Room 1 Wrong");
-        }
-    }
 }
