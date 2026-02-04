@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 2322162726111544669}
   - component: {fileID: 1911471782825951135}
   - component: {fileID: 7675939124919151383}
+  - component: {fileID: 5732081063343581511}
   m_Layer: 0
   m_Name: Mop
   m_TagString: Untagged
@@ -122,6 +123,27 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &5732081063343581511
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3572329733588062515}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.16359496, y: 0.0342762, z: 0.57168823}
+  m_Center: {x: 0.000000026077032, y: 0.0171381, z: -0.000009000301}
 --- !u!1 &4014013941413305351
 GameObject:
   m_ObjectHideFlags: 0
@@ -133,6 +155,7 @@ GameObject:
   - component: {fileID: 4969677716551913623}
   - component: {fileID: 7873740181002607281}
   - component: {fileID: 3769696847093403066}
+  - component: {fileID: 3374889613274566615}
   m_Layer: 0
   m_Name: Pole
   m_TagString: Untagged
@@ -211,3 +234,24 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &3374889613274566615
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4014013941413305351}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.5318069, y: 1.5975176, z: 0.045676265}
+  m_Center: {x: 0.25243077, y: 0.7894593, z: 0.021099186}
