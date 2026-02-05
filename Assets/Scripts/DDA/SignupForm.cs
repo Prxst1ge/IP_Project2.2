@@ -99,7 +99,7 @@ public class SignupForm : MonoBehaviour
         return new Dictionary<string, object>
         {
             { "DisplayName", displayName },
-            { "AchievementsCollected", new Dictionary<string, object> { { "Speedrunner", false } } },
+            { "AchievementsCollected", new Dictionary<string, object>() },
             { "StageCompletionTimings", new Dictionary<string, object>
                 {
                     { "Stage1", 0 },
