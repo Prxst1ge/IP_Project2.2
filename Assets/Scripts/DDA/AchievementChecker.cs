@@ -97,6 +97,14 @@ public class AchievementChecker : MonoBehaviour
             checkCondition = CheckWalkedEveryPathCondition
         });
         
+        // FIRST STEPS: Create a new account
+        achievements.Add("FirstSteps", new Achievement
+        {
+            name = "FirstSteps",
+            description = "Create a new account for the first time",
+            checkCondition = CheckFirstStepsCondition
+        });
+        
         // ADD MORE ACHIEVEMENTS HERE:
         // Example:
         // achievements.Add("PerfectScore", new Achievement
@@ -326,6 +334,36 @@ public class AchievementChecker : MonoBehaviour
         catch (Exception ex)
         {
             Debug.LogError($"Error checking Walked Every Path: {ex.Message}");
+            return false;
+        }
+    }
+
+    /// <summary>
+    /// FIRST STEPS: Check if account was just created (new player)
+    /// </summary>
+    private async Task<bool> CheckFirstStepsCondition(string playerId)
+    {
+        try
+        {
+            // Check if player has any stage completion data
+            // A brand new account will have no stage completion timings
+            var snapshot = await GetPlayerStatsReference(playerId)
+                .Child("StageCompletionTimings")
+                .GetValueAsync();
+            
+            // If no stage completion data exists, this is a brand new account
+            if (!snapshot.Exists || snapshot.Value == null)
+            {
+                Debug.Log("✓ New account detected - First Steps achievement unlocked!");
+                return true;
+            }
+            
+            // Account has existing data, so not a new account
+            return false;
+        }
+        catch (Exception ex)
+        {
+            Debug.LogError($"Error checking First Steps: {ex.Message}");
             return false;
         }
     }
