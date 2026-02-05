@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3385987650428941854}
   - component: {fileID: 8466202759749838452}
   - component: {fileID: 2190050261318063887}
+  - component: {fileID: 4911291740458508106}
   m_Layer: 0
   m_Name: Hallway
   m_TagString: Untagged
@@ -89,6 +90,28 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &4911291740458508106
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5685471031620095889}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 701899841712632613, guid: 3d560273b0148cf429048020ea542adb, type: 3}
 --- !u!1 &7061520362406002324
 GameObject:
   m_ObjectHideFlags: 0

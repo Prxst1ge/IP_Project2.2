@@ -14,6 +14,7 @@ public class RedesignTrigger : MonoBehaviour
 
     public Redesign redesignScript; // For the object with the redesign script
     public float spawnDistance = 1.5f; // Distance from player to spawn UI
+    public LayerMask obstacleLayer = 1; // Default layer is 1
 
 
     private void Start()
@@ -59,49 +60,70 @@ public class RedesignTrigger : MonoBehaviour
 
     void Update()
     {
-        // If repaired AND explanation NOT seen yet
+        // For real-time tracking and updates
         if (redesignScript.isRepaired && !redesignScript.explanationSeen)
         {
-            // Show Explanation UI
+            // Only run this IF the explanation is currently hidden
             if (explanationUI != null && !explanationUI.activeSelf)
             {
+                // Position it ONCE right now
                 PositionUIInFrontOfPlayer(explanationUI);
+
+                // Then turn it on (it will stay there)
                 explanationUI.SetActive(true);
             }
-            // Hide Clue UI
+
+            // Ensure Clue is hidden
             if (uiClue != null) uiClue.SetActive(false);
         }
+
+        // For clue tracking
+        else if (uiClue != null && uiClue.activeSelf)
+        {
+            // Run this EVERY FRAME so it follows player's face
+            PositionUIInFrontOfPlayer(uiClue);
+        }
+
         else
         {
-            // If explanation IS seen, ensure UI is hidden
-            if (explanationUI != null) explanationUI.SetActive(false);
+            // If explanation is seen, hide it
+            if (explanationUI != null && redesignScript.explanationSeen)
+            {
+                explanationUI.SetActive(false);
+            }
         }
     }
 
     void PositionUIInFrontOfPlayer(GameObject uiObject)
     {
-        Camera playerCam = Camera.main; // Automatically finds camera tagged "MainCamera"
+        Camera playerCam = Camera.main;
+        if (playerCam == null) return;
 
-        if (playerCam == null)
+        Vector3 cameraPos = playerCam.transform.position;
+        Vector3 forwardDir = playerCam.transform.forward;
+
+        // Default target position (1.5m away)
+        Vector3 finalPosition = cameraPos + (forwardDir * spawnDistance);
+
+        // WALL CHECK (Raycast)
+        RaycastHit hit;
+        // Shoot a ray from eyes, forward, for the length of spawnDistance
+        if (Physics.Raycast(cameraPos, forwardDir, out hit, spawnDistance, obstacleLayer))
         {
-            Debug.LogError("Could not find MainCamera! Ensure your VR Headset Camera is tagged 'MainCamera'.");
-            return;
+            // If a wall is hit, position the UI slightly in front of the wall
+            finalPosition = hit.point - (forwardDir * 0.2f);
         }
 
-        // Calculate position: Start at camera, move forward X meters
-        Vector3 targetPos = playerCam.transform.position + (playerCam.transform.forward * spawnDistance);
-
-        // Lock Height: Keep it at eye level 
-        targetPos.y = playerCam.transform.position.y;
+        // Lock Height (Keep it at eye level)
+        finalPosition.y = cameraPos.y;
 
         // Apply Position
-        uiObject.transform.position = targetPos;
+        uiObject.transform.position = finalPosition;
 
         // Rotate to face the camera
         uiObject.transform.LookAt(playerCam.transform);
-
-        // Flip 180 degrees (because UI usually faces 'backwards' by default)
         uiObject.transform.Rotate(0, 180, 0);
     }
+
 
 }
