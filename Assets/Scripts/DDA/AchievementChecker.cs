@@ -49,11 +49,12 @@ public class AchievementChecker : MonoBehaviour
     {
         achievements = new Dictionary<string, Achievement>();
         
-        // SPEEDRUNNER: Complete all stages under 180 seconds each
+        // SPEEDRUNNER: Complete all stages between 20 and 180 seconds each
         achievements.Add("Speedrunner", new Achievement
         {
             name = "Speedrunner",
-            description = "Complete all 4 stages under 3 minutes each",
+            description = "Complete all 4 stages between 20 seconds to 3 minutes each",
+            imagePath = "achievements/speedrunner.png",
             checkCondition = CheckSpeedrunnerCondition
         });
         
@@ -62,6 +63,7 @@ public class AchievementChecker : MonoBehaviour
         {
             name = "BeyondColor",
             description = "Complete Stage 1",
+            imagePath = "achievements/beyond_color.png",
             checkCondition = CheckBeyondColorCondition
         });
         
@@ -70,6 +72,7 @@ public class AchievementChecker : MonoBehaviour
         {
             name = "SharpAtShortRange",
             description = "Complete Stage 2",
+            imagePath = "achievements/sharp_at_short_range.png",
             checkCondition = CheckSharpAtShortRangeCondition
         });
 
@@ -78,6 +81,7 @@ public class AchievementChecker : MonoBehaviour
         {
             name = "SmoothOperator",
             description = "Complete Stage 3",
+            imagePath = "achievements/smooth_operator.png",
             checkCondition = CheckSmoothOperatorCondition
         });
 
@@ -86,6 +90,7 @@ public class AchievementChecker : MonoBehaviour
         {
             name = "OneArmWonder",
             description = "Complete Stage 4",
+            imagePath = "achievements/one_arm_wonder.png",
             checkCondition = CheckOneArmWonderCondition
         });
 
@@ -94,6 +99,7 @@ public class AchievementChecker : MonoBehaviour
         {
             name = "WalkedEveryPath",
             description = "Complete all stages",
+            imagePath = "achievements/walked_every_path.png",
             checkCondition = CheckWalkedEveryPathCondition
         });
         
@@ -102,6 +108,7 @@ public class AchievementChecker : MonoBehaviour
         {
             name = "FirstSteps",
             description = "Create a new account for the first time",
+            imagePath = "achievements/first_steps.png",
             checkCondition = CheckFirstStepsCondition
         });
         
@@ -176,26 +183,28 @@ public class AchievementChecker : MonoBehaviour
     // Add new achievement check methods here
     
     /// <summary>
-    /// SPEEDRUNNER: Check if all stages completed under 180 seconds
+    /// SPEEDRUNNER: Check if all stages completed between 20 and 180 seconds
     /// </summary>
     private async Task<bool> CheckSpeedrunnerCondition(string playerId)
     {
-        const float SPEEDRUN_TIME_THRESHOLD = 180f;
+        const float SPEEDRUN_TIME_MIN = 20f;
+        const float SPEEDRUN_TIME_MAX = 180f;
         
         try
         {
             for (int stage = 1; stage <= 4; stage++)
             {
                 float stageTime = await GetStageCompletionTime(playerId, stage);
-                Debug.Log($"Stage {stage} time: {stageTime}s (threshold: {SPEEDRUN_TIME_THRESHOLD}s)");
+                Debug.Log($"Stage {stage} time: {stageTime}s (required: {SPEEDRUN_TIME_MIN}s - {SPEEDRUN_TIME_MAX}s)");
                 
-                if (stageTime > SPEEDRUN_TIME_THRESHOLD)
+                if (stageTime <= SPEEDRUN_TIME_MIN || stageTime >= SPEEDRUN_TIME_MAX)
                 {
+                    Debug.Log($"Stage {stage} failed speedrun check: {stageTime}s not between {SPEEDRUN_TIME_MIN}s and {SPEEDRUN_TIME_MAX}s");
                     return false;
                 }
             }
             
-            Debug.Log("✓ All stages under 180 seconds!");
+            Debug.Log("✓ All stages completed between 20 and 180 seconds!");
             return true;
         }
         catch (Exception ex)
@@ -339,33 +348,15 @@ public class AchievementChecker : MonoBehaviour
     }
 
     /// <summary>
-    /// FIRST STEPS: Check if account was just created (new player)
+    /// FIRST STEPS: Unlocked when signup is successful
+    /// This achievement is triggered directly from SignupForm after account creation
     /// </summary>
     private async Task<bool> CheckFirstStepsCondition(string playerId)
     {
-        try
-        {
-            // Check if player has any stage completion data
-            // A brand new account will have no stage completion timings
-            var snapshot = await GetPlayerStatsReference(playerId)
-                .Child("StageCompletionTimings")
-                .GetValueAsync();
-            
-            // If no stage completion data exists, this is a brand new account
-            if (!snapshot.Exists || snapshot.Value == null)
-            {
-                Debug.Log("✓ New account detected - First Steps achievement unlocked!");
-                return true;
-            }
-            
-            // Account has existing data, so not a new account
-            return false;
-        }
-        catch (Exception ex)
-        {
-            Debug.LogError($"Error checking First Steps: {ex.Message}");
-            return false;
-        }
+        // This achievement is only called explicitly after successful signup
+        // Always return true when checked (signup already validated the new account)
+        Debug.Log("✓ First Steps achievement unlocked - Welcome new player!");
+        return await Task.FromResult(true);
     }
 
     // ADD MORE ACHIEVEMENT CONDITIONS HERE:
@@ -419,16 +410,17 @@ public class AchievementChecker : MonoBehaviour
 
     /// <summary>
     /// Unlock an achievement in Firebase
+    /// Only shows UI notification and plays sound if this is a NEW unlock
     /// </summary>
     private async Task UnlockAchievement(string playerId, string achievementName)
     {
         try
         {
-            // Check if already unlocked
+            // Check if already unlocked - sound effect only plays for new unlocks
             bool alreadyUnlocked = await IsAchievementUnlocked(playerId, achievementName);
             if (alreadyUnlocked)
             {
-                Debug.Log($"Achievement '{achievementName}' already unlocked");
+                Debug.Log($"Achievement '{achievementName}' already unlocked - skipping notification and sound");
                 return;
             }
             
@@ -441,6 +433,13 @@ public class AchievementChecker : MonoBehaviour
                 .SetValueAsync(true);
             
             Debug.Log($"Achievement '{achievementName}' saved to Firebase");
+            
+            // Show UI notification and play sound (only for NEW unlocks, not already-unlocked)
+            if (achievements.ContainsKey(achievementName))
+            {
+                Achievement achievement = achievements[achievementName];
+                AchievementNotificationUI.Instance?.ShowAchievement(achievement.name, achievement.description, achievement.imagePath);
+            }
         }
         catch (Exception ex)
         {
@@ -495,6 +494,7 @@ public class Achievement
 {
     public string name;
     public string description;
+    public string imagePath; // Path/URL to achievement badge image in Firebase Storage
     public Func<string, Task<bool>> checkCondition; // Function that checks if achievement is unlocked
 }
 

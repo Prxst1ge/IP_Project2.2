@@ -119,6 +119,8 @@ public class StopWatch : MonoBehaviour
         {
             Debug.LogWarning("Stage name not set. Call InitializeForStage() first.");
         }
+        // 👇 Add this:
+        AchievementChecker.Instance?.CheckAllAchievements();
     }
 
     void UpdateTimerDisplay()

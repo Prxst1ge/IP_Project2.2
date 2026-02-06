@@ -64,6 +64,7 @@ public class SignupForm : MonoBehaviour
                 .Child("Game").Child("Players").Child(firebaseUser.UserId).Child("Stats");
 
             await dbRef.SetValueAsync(stats);
+            AchievementChecker.Instance?.CheckAchievement("FirstSteps");
 
             ShowError("");
             Debug.Log("Signup completed and saved profile");
@@ -99,7 +100,11 @@ public class SignupForm : MonoBehaviour
         return new Dictionary<string, object>
         {
             { "DisplayName", displayName },
-            { "AchievementsCollected", new Dictionary<string, object>() },
+            { "AchievementsCollected", new Dictionary<string, object>
+                {
+                    { "_placeholder", false } // Ensures node exists in Firebase (will be removed when first real achievement unlocks)
+                }
+            },
             { "StageCompletionTimings", new Dictionary<string, object>
                 {
                     { "Stage1", 0 },

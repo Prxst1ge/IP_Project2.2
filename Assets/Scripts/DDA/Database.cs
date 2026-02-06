@@ -14,6 +14,14 @@ public class Database : MonoBehaviour
     public static bool IsReady { get; private set; }
     public static string InitError { get; private set; }
 
+    [Header("Firebase Storage Settings")]
+    [Tooltip("Your Firebase Storage bucket URL (e.g., gs://your-project.appspot.com)")]
+    public string storageBucketUrl = "gs://your-firebase-project.appspot.com";
+
+    [Header("Achievement Badge Paths")]
+    [Tooltip("Folder path in Firebase Storage where achievement badges are stored")]
+    public string achievementBadgesFolder = "achievments";
+
      private async void Start()
     {
         Debug.Log("Initializing Firebase...");
@@ -113,6 +121,23 @@ public class Database : MonoBehaviour
         {
             Debug.LogError($"Failed to save stage completion time: {ex.Message}");
         }
+    }
+
+    /// <summary>
+    /// Get full storage URL for an image path
+    /// </summary>
+    public string GetFullStorageUrl(string imagePath)
+    {
+        return $"{storageBucketUrl}/{imagePath}";
+    }
+
+    /// <summary>
+    /// Validate if storage bucket URL is configured
+    /// </summary>
+    public bool IsStorageConfigured()
+    {
+        return !string.IsNullOrEmpty(storageBucketUrl) &&
+               !storageBucketUrl.Contains("your-firebase-project");
     }
 
 }
