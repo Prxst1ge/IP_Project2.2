@@ -117,7 +117,6 @@ public class VRElevator : MonoBehaviour
         if (other.CompareTag("Player") || other.GetComponent<Rigidbody>() != null)
         {
             other.transform.SetParent(null);
-            if (other.CompareTag("Player")) DontDestroyOnLoad(other.gameObject);
         }
     }
 }
