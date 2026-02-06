@@ -42,6 +42,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8071795805802788365}
     m_Modifications:
+    - target: {fileID: 2309607872649744534, guid: ec28e8b15f9034340be109f6af39c174, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 7278770055052603142, guid: ec28e8b15f9034340be109f6af39c174, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.50204086
@@ -89,8 +93,37 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2309607872649744534, guid: ec28e8b15f9034340be109f6af39c174, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 514421336686133566}
   m_SourcePrefab: {fileID: 100100000, guid: ec28e8b15f9034340be109f6af39c174, type: 3}
+--- !u!1 &2481572459435856961 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2309607872649744534, guid: ec28e8b15f9034340be109f6af39c174, type: 3}
+  m_PrefabInstance: {fileID: 179353567544132823}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &514421336686133566
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2481572459435856961}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.74911356, y: 0.7915001, z: 1.4354419}
+  m_Center: {x: 0.025692359, y: 0.3957501, z: 0.000000059604645}
 --- !u!4 &7457490196519709649 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7278770055052603142, guid: ec28e8b15f9034340be109f6af39c174, type: 3}
@@ -143,6 +176,14 @@ PrefabInstance:
     - target: {fileID: 633760017206241351, guid: 8ba4b22d339248a4e83d0e80f2a67eaf, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 943566813397232203, guid: 8ba4b22d339248a4e83d0e80f2a67eaf, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 7213004118947912684, guid: 8ba4b22d339248a4e83d0e80f2a67eaf, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 8675280765424312079, guid: 8ba4b22d339248a4e83d0e80f2a67eaf, type: 3}
       propertyPath: m_Name

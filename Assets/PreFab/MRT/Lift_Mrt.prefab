@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3372004500657764690}
   - component: {fileID: 3791598284340429888}
   - component: {fileID: 2626269592593224901}
+  - component: {fileID: 1023984335722068110}
   m_Layer: 0
   m_Name: Door_L
   m_TagString: Untagged
@@ -117,6 +118,27 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &1023984335722068110
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3412614924547621259}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.6705963, y: 2.5327947, z: 0.07862306}
+  m_Center: {x: -0.23566458, y: -1.0375882, z: -0.92512023}
 --- !u!1 &4873475778313956444
 GameObject:
   m_ObjectHideFlags: 0
@@ -163,6 +185,7 @@ GameObject:
   - component: {fileID: 8278762908497503629}
   - component: {fileID: 4953904992062135114}
   - component: {fileID: 246849225660577171}
+  - component: {fileID: 5582913500513570734}
   m_Layer: 0
   m_Name: Lift
   m_TagString: Untagged
@@ -306,6 +329,28 @@ MonoBehaviour:
   onReachedBottom:
     m_PersistentCalls:
       m_Calls: []
+--- !u!64 &5582913500513570734
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9214744163909281298}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -5107355360153893096, guid: c8d263c440134a243b0745bdc25874c2, type: 3}
 --- !u!1 &9223324290944377921
 GameObject:
   m_ObjectHideFlags: 0
@@ -318,6 +363,7 @@ GameObject:
   - component: {fileID: 1029839234892160526}
   - component: {fileID: 7096222816793935363}
   - component: {fileID: 6580962447377608847}
+  - component: {fileID: 6373827309925352712}
   m_Layer: 0
   m_Name: Door_R
   m_TagString: Untagged
@@ -423,6 +469,27 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &6373827309925352712
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9223324290944377921}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.6705963, y: 2.5327947, z: 0.07862306}
+  m_Center: {x: 0.43493173, y: -1.0375882, z: -0.92512023}
 --- !u!1001 &287305588323278659
 PrefabInstance:
   m_ObjectHideFlags: 0

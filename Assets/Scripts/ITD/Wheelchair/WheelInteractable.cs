@@ -24,6 +24,7 @@ public class WheelInteractable : XRBaseInteractable
 
     [Range(0, 0.5f), Tooltip("Distance from wheel collider at which the interaction manager will cancel selection.")]
     [SerializeField] float deselectionThreshold = 0.25f;
+    SphereCollider m_SphereCollider; // Sphere collider of the wheel
 
     GameObject grabPoint;
 
@@ -35,7 +36,8 @@ public class WheelInteractable : XRBaseInteractable
     {
         // Get references
         m_Rigidbody = GetComponent<Rigidbody>(); // Rigidbody of the wheel
-        wheelRadius = GetComponent<SphereCollider>().radius; // Radius of the wheel collider
+        m_SphereCollider = GetComponent<SphereCollider>(); // Sphere collider of the wheel
+        wheelRadius = m_SphereCollider.radius; // Radius of the wheel collider
 
         // Slope check is run in coroutine at optimized intervals.
         StartCoroutine(CheckForSlope());
@@ -79,7 +81,7 @@ public class WheelInteractable : XRBaseInteractable
         grabPoint = new GameObject($"{transform.name}'s grabPoint", typeof(GrabPoints), typeof(FixedJoint));
 
 
-        // Ensure the grab point is on the "Wheelchair" layer so it follows the Physics Matrix rules.
+        // Layer the grab point to the same layer as this wheel.
         grabPoint.layer = gameObject.layer;
 
 
@@ -116,11 +118,17 @@ public class WheelInteractable : XRBaseInteractable
 
     IEnumerator MonitorDetachDistance(XRBaseInteractor interactor)
     {
-        // While this wheel has an active grabPoint.
         while (grabPoint)
         {
-            // If interactor drifts beyond the threshold distance from wheel, force deselection.
-            if (Vector3.Distance(transform.position, interactor.transform.position) >= wheelRadius + deselectionThreshold)
+            // [FIX] Calculate the ACTUAL center of the collider in world space
+            // This accounts for the offset if your collider isn't at (0,0,0)
+            Vector3 colliderWorldCenter = transform.TransformPoint(m_SphereCollider.center);
+
+            // Measure distance from the Green Sphere Center, not the Pivot
+            float distance = Vector3.Distance(colliderWorldCenter, interactor.transform.position);
+
+            // Check if hand is too far from the collider surface
+            if (distance >= wheelRadius + deselectionThreshold)
             {
                 interactionManager.CancelInteractorSelection((IXRSelectInteractor)interactor);
             }
@@ -191,4 +199,25 @@ public class WheelInteractable : XRBaseInteractable
             yield return new WaitForSeconds(0.1f);
         }
     }
+
+    // Check whether the player hand is touching the wheel
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player") || other.GetComponent<XRDirectInteractor>() != null)
+        {
+            Debug.Log("Player Hand touched the wheel!");
+
+        }
+    }
+
+    // Called automatically when the collider leaves
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player") || other.GetComponent<XRDirectInteractor>() != null)
+        {
+            Debug.Log("Player Hand left the wheel.");
+
+        }
+    }
 }
+
