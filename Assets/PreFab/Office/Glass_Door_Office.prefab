@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3627637295305689770}
   - component: {fileID: 2320973609038146311}
   - component: {fileID: 5096762363183195898}
+  - component: {fileID: 5140600698688845483}
   m_Layer: 0
   m_Name: Door_R
   m_TagString: Untagged
@@ -90,6 +91,27 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &5140600698688845483
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1763744268040017412}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.85775733, y: 2.0539613, z: 0.017736206}
+  m_Center: {x: 0.48833358, y: 1.0269806, z: -0.008868131}
 --- !u!1 &1869073593069294135
 GameObject:
   m_ObjectHideFlags: 0
@@ -106,7 +128,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &8947719187439559959
 Transform:
@@ -402,6 +424,7 @@ GameObject:
   - component: {fileID: 2819007279548297017}
   - component: {fileID: 5001990310258146212}
   - component: {fileID: 2495471724226207621}
+  - component: {fileID: 1031066084448587543}
   m_Layer: 0
   m_Name: Door_L
   m_TagString: Untagged
@@ -481,3 +504,24 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &1031066084448587543
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6744311431608718036}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.85775733, y: 2.0539613, z: 0.017736206}
+  m_Center: {x: 1.3460909, y: 1.0269806, z: -0.008868131}
