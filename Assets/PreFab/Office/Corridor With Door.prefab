@@ -434,8 +434,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedComponents:
+    - {fileID: 1031066084448587543, guid: 1e7f5aa379eca194aa40ed70baeefea6, type: 3}
+    - {fileID: 627465478041395090, guid: 1e7f5aa379eca194aa40ed70baeefea6, type: 3}
+    m_RemovedGameObjects:
+    - {fileID: 9219994573942996458, guid: 1e7f5aa379eca194aa40ed70baeefea6, type: 3}
+    - {fileID: 2602251018949769503, guid: 1e7f5aa379eca194aa40ed70baeefea6, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 2819007279548297017, guid: 1e7f5aa379eca194aa40ed70baeefea6, type: 3}
       insertIndex: -1
@@ -450,9 +454,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6744311431608718036, guid: 1e7f5aa379eca194aa40ed70baeefea6, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1374827243362753656}
-    - targetCorrespondingSourceObject: {fileID: 6744311431608718036, guid: 1e7f5aa379eca194aa40ed70baeefea6, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 8182864069262555009}
     - targetCorrespondingSourceObject: {fileID: 6744311431608718036, guid: 1e7f5aa379eca194aa40ed70baeefea6, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5967512053838411870}
@@ -525,45 +526,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 2
---- !u!59 &8182864069262555009
-HingeJoint:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1200947070554057012}
-  serializedVersion: 3
-  m_ConnectedBody: {fileID: 0}
-  m_ConnectedArticulationBody: {fileID: 0}
-  m_Anchor: {x: 1.77, y: 1.16, z: 0}
-  m_Axis: {x: 0, y: 1, z: 0}
-  m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0, y: 0, z: 0}
-  m_UseSpring: 0
-  m_Spring:
-    spring: 0
-    damper: 0
-    targetPosition: 0
-  m_UseMotor: 0
-  m_Motor:
-    targetVelocity: 0
-    force: 0
-    freeSpin: 0
-  m_UseLimits: 0
-  m_ExtendedLimits: 0
-  m_UseAcceleration: 0
-  m_Limits:
-    min: 0
-    max: 0
-    bounciness: 0
-    bounceMinVelocity: 0.2
-    contactDistance: 0
-  m_BreakForce: Infinity
-  m_BreakTorque: Infinity
-  m_EnableCollision: 0
-  m_EnablePreprocessing: 1
-  m_MassScale: 1
-  m_ConnectedMassScale: 1
 --- !u!114 &5967512053838411870
 MonoBehaviour:
   m_ObjectHideFlags: 0
