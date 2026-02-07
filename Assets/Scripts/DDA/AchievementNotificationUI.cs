@@ -29,6 +29,7 @@ public class AchievementNotificationUI : MonoBehaviour
     private CanvasGroup canvasGroup;
     private bool isShowing = false;
     private Coroutine hideCoroutine;
+    private Transform cameraTransform;
 
     void Awake()
     {
@@ -53,6 +54,23 @@ public class AchievementNotificationUI : MonoBehaviour
 
         // Hide notification panel initially
         HideImmediate();
+
+        // Get main camera for VR support
+        cameraTransform = Camera.main.transform;
+    }
+
+    void Update()
+    {
+        // Keep notification panel in front of camera for VR
+        if (isShowing && cameraTransform != null)
+        {
+            // Position 1.5 units in front of camera
+            notificationPanel.transform.position = cameraTransform.position + cameraTransform.forward * 0.5f;
+
+            // Make it face the camera
+            notificationPanel.transform.LookAt(cameraTransform.position);
+            notificationPanel.transform.Rotate(0, 180, 0);
+        }
     }
 
     /// <summary>

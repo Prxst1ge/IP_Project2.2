@@ -134,6 +134,14 @@ public class StageUnlockManager : MonoBehaviour
                 if (string.IsNullOrEmpty(stagePortal.stageName))
                     continue;
 
+                // Stage 1 is always unlocked, no timing check required
+                if (stagePortal.stageName == "Stage1")
+                {
+                    Debug.Log("Stage1 is always available. Unlocking portal...");
+                    UnlockPortal(stagePortal);
+                    continue;
+                }
+
                 // Build the path: /Game/Players/{userId}/Stats/StageCompletionTimings/{stageName}
                 string path = $"Game/Players/{userId}/Stats/StageCompletionTimings/{stagePortal.stageName}";
 

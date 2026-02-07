@@ -13674,6 +13674,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1717954561962503726, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
   m_PrefabInstance: {fileID: 441087506}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &441087510 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5283669349766710338, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
+  m_PrefabInstance: {fileID: 441087506}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1001 &441731924
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -32914,7 +32925,7 @@ PrefabInstance:
     - target: {fileID: 7057361762160868533, guid: d0bc5b6d3c65f874492e91f0925e18d3, type: 3}
       propertyPath: timerText
       value: 
-      objectReference: {fileID: 1808978732}
+      objectReference: {fileID: 441087510}
     - target: {fileID: 8599246322768928845, guid: d0bc5b6d3c65f874492e91f0925e18d3, type: 3}
       propertyPath: m_LocalPosition.x
       value: -13.86216
@@ -53939,114 +53950,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4081434944261334673, guid: 006e1f73ab45eb04689edf5e41e9868e, type: 3}
   m_PrefabInstance: {fileID: 1808968826}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &1808978731
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 5198228664555788315, guid: bef1045afc663f54daee924fb8394431, type: 3}
-      propertyPath: m_Name
-      value: TimerUI
-      objectReference: {fileID: 0}
-    - target: {fileID: 6700698036782522983, guid: bef1045afc663f54daee924fb8394431, type: 3}
-      propertyPath: m_Pivot.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6700698036782522983, guid: bef1045afc663f54daee924fb8394431, type: 3}
-      propertyPath: m_Pivot.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6700698036782522983, guid: bef1045afc663f54daee924fb8394431, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6700698036782522983, guid: bef1045afc663f54daee924fb8394431, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6700698036782522983, guid: bef1045afc663f54daee924fb8394431, type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6700698036782522983, guid: bef1045afc663f54daee924fb8394431, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6700698036782522983, guid: bef1045afc663f54daee924fb8394431, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6700698036782522983, guid: bef1045afc663f54daee924fb8394431, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6700698036782522983, guid: bef1045afc663f54daee924fb8394431, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6700698036782522983, guid: bef1045afc663f54daee924fb8394431, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6700698036782522983, guid: bef1045afc663f54daee924fb8394431, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6700698036782522983, guid: bef1045afc663f54daee924fb8394431, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6700698036782522983, guid: bef1045afc663f54daee924fb8394431, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6700698036782522983, guid: bef1045afc663f54daee924fb8394431, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6700698036782522983, guid: bef1045afc663f54daee924fb8394431, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6700698036782522983, guid: bef1045afc663f54daee924fb8394431, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6700698036782522983, guid: bef1045afc663f54daee924fb8394431, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6700698036782522983, guid: bef1045afc663f54daee924fb8394431, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6700698036782522983, guid: bef1045afc663f54daee924fb8394431, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6700698036782522983, guid: bef1045afc663f54daee924fb8394431, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: bef1045afc663f54daee924fb8394431, type: 3}
---- !u!114 &1808978732 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4358179632479497538, guid: bef1045afc663f54daee924fb8394431, type: 3}
-  m_PrefabInstance: {fileID: 1808978731}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1001 &1811220935
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -67659,7 +67562,6 @@ SceneRoots:
   - {fileID: 506866653}
   - {fileID: 2035109356}
   - {fileID: 1141410728}
-  - {fileID: 1808978731}
   - {fileID: 433919902}
   - {fileID: 1309347121}
   - {fileID: 2737814}
