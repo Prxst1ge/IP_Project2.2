@@ -7699,6 +7699,65 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 9122350302957459031, guid: 56cce19dcbcd7b045b8451e4987f7cc2, type: 3}
   m_PrefabInstance: {fileID: 642910995}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2128864305
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2128864307}
+  - component: {fileID: 2128864306}
+  m_Layer: 0
+  m_Name: StageUnlockManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2128864306
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2128864305}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29cf37eadcbc25d43a1c64dc6ba1a002, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StageUnlockManager
+  stagePortals:
+  - stageName: Stage1
+    nextStagePortal: {fileID: 8322789985120023313}
+    isUnlocked: 0
+  - stageName: Stage2
+    nextStagePortal: {fileID: 1228190804}
+    isUnlocked: 0
+  - stageName: Stage3
+    nextStagePortal: {fileID: 1625084624}
+    isUnlocked: 0
+  - stageName: Stage4
+    nextStagePortal: {fileID: 458170424}
+    isUnlocked: 0
+  checkOnStart: 1
+  autoCheckInterval: 0
+--- !u!4 &2128864307
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2128864305}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -12.13783, y: 2.74967, z: -43.84999}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &534150778807307182
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8243,6 +8302,7 @@ SceneRoots:
   - {fileID: 149865173}
   - {fileID: 331940749}
   - {fileID: 1855158528}
+  - {fileID: 2128864307}
   - {fileID: 858411922}
   - {fileID: 583112839}
   - {fileID: 1583180103}
