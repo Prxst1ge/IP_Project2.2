@@ -3001,6 +3001,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Glass_Wall (12)
       objectReference: {fileID: 0}
+    - target: {fileID: 8870817467268738132, guid: 34165f295105e554aa591145ec25e521, type: 3}
+      propertyPath: m_Size.y
+      value: 1.7022605
+      objectReference: {fileID: 0}
+    - target: {fileID: 8870817467268738132, guid: 34165f295105e554aa591145ec25e521, type: 3}
+      propertyPath: m_Center.y
+      value: 1.3710687
+      objectReference: {fileID: 0}
     - target: {fileID: 9074106644091848552, guid: 34165f295105e554aa591145ec25e521, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0
@@ -5086,7 +5094,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &283738041
 Transform:
   m_ObjectHideFlags: 0
@@ -8237,11 +8245,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1717954561962503726, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -15.07
+      value: -13.66
       objectReference: {fileID: 0}
     - target: {fileID: 1717954561962503726, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.6
+      value: 2.16
       objectReference: {fileID: 0}
     - target: {fileID: 1717954561962503726, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
       propertyPath: m_LocalPosition.z
@@ -8273,6 +8281,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1717954561962503726, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6232745470614056090, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
+      propertyPath: m_IncludeLayers.m_Bits
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -9859,7 +9871,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &518046096
 Transform:
   m_ObjectHideFlags: 0
@@ -10144,6 +10156,7 @@ GameObject:
   m_Component:
   - component: {fileID: 550493787}
   - component: {fileID: 550493788}
+  - component: {fileID: 550493789}
   m_Layer: 0
   m_Name: Redesign Box
   m_TagString: Untagged
@@ -10159,12 +10172,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 550493786}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.46, y: -3.32, z: 5.41}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 9.459999, y: -3.32, z: 5.4100037}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1899939739}
+  m_Father: {fileID: 1442874937}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &550493788
 BoxCollider:
@@ -10187,6 +10200,92 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 4.736454, y: 3.8507876, z: 2.284317}
   m_Center: {x: -1.1667633, y: 0.44111848, z: -0.2769394}
+--- !u!114 &550493789
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 550493786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a35f6cfbfba9b548aaa00d52cfe8a50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.XR.Interaction.Toolkit::UnityEngine.XR.Interaction.Toolkit.Interactables.XRSimpleInteractable
+  m_InteractionManager: {fileID: 0}
+  m_Colliders: []
+  m_InteractionLayers:
+    m_Bits: 1
+  m_DistanceCalculationMode: 1
+  m_SelectMode: 0
+  m_FocusMode: 1
+  m_CustomReticle: {fileID: 0}
+  m_AllowGazeInteraction: 0
+  m_AllowGazeSelect: 0
+  m_OverrideGazeTimeToSelect: 0
+  m_GazeTimeToSelect: 0.5
+  m_OverrideTimeToAutoDeselectGaze: 0
+  m_TimeToAutoDeselectGaze: 3
+  m_AllowGazeAssistance: 0
+  m_FirstHoverEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_LastHoverExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_HoverEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_HoverExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FirstSelectEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_LastSelectExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_SelectEntered:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1899939738}
+        m_TargetAssemblyTypeName: Redesign, Assembly-CSharp
+        m_MethodName: PerformRepair
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  m_SelectExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FirstFocusEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_LastFocusExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FocusEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FocusExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Activated:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Deactivated:
+    m_PersistentCalls:
+      m_Calls: []
+  m_StartingHoverFilters: []
+  m_StartingSelectFilters: []
+  m_StartingInteractionStrengthFilters: []
+  m_AutoFindParentInteractableInHierarchy: 0
+  m_ParentInteractableObject: {fileID: 0}
 --- !u!4 &550875890 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9074106644091848552, guid: 34165f295105e554aa591145ec25e521, type: 3}
@@ -14617,6 +14716,14 @@ PrefabInstance:
     - target: {fileID: 7242285949400328744, guid: 34165f295105e554aa591145ec25e521, type: 3}
       propertyPath: m_Name
       value: Glass_Wall (14)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8870817467268738132, guid: 34165f295105e554aa591145ec25e521, type: 3}
+      propertyPath: m_Size.y
+      value: 1.6951976
+      objectReference: {fileID: 0}
+    - target: {fileID: 8870817467268738132, guid: 34165f295105e554aa591145ec25e521, type: 3}
+      propertyPath: m_Center.y
+      value: 1.3746002
       objectReference: {fileID: 0}
     - target: {fileID: 9074106644091848552, guid: 34165f295105e554aa591145ec25e521, type: 3}
       propertyPath: m_LocalPosition.x
@@ -23889,6 +23996,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3606540704505544017}
+  - {fileID: 550493787}
   m_Father: {fileID: 1899939739}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1446160516 stripped
@@ -30896,7 +31004,6 @@ Transform:
   - {fileID: 1442874937}
   - {fileID: 1432941398}
   - {fileID: 659216342}
-  - {fileID: 550493787}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1904141368
@@ -31313,6 +31420,14 @@ PrefabInstance:
     - target: {fileID: 7242285949400328744, guid: 34165f295105e554aa591145ec25e521, type: 3}
       propertyPath: m_Name
       value: Glass_Wall (13)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8870817467268738132, guid: 34165f295105e554aa591145ec25e521, type: 3}
+      propertyPath: m_Size.y
+      value: 1.7010808
+      objectReference: {fileID: 0}
+    - target: {fileID: 8870817467268738132, guid: 34165f295105e554aa591145ec25e521, type: 3}
+      propertyPath: m_Center.y
+      value: 1.3716586
       objectReference: {fileID: 0}
     - target: {fileID: 9074106644091848552, guid: 34165f295105e554aa591145ec25e521, type: 3}
       propertyPath: m_LocalPosition.x

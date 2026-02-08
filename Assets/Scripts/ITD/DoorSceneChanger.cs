@@ -16,6 +16,10 @@ public class DoorSceneChanger : MonoBehaviour
     // This runs when the player walks into the trigger
     private void OnTriggerEnter(Collider other)
     {
+        if (other.attachedRigidbody != null && other.attachedRigidbody.CompareTag("Player"))
+        {
+            LoadDestination();
+        }
         if (other.CompareTag("Player"))
         {
             Debug.Log(debugMessage);
