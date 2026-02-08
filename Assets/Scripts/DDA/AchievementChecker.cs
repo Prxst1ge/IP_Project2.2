@@ -157,6 +157,7 @@ public class AchievementChecker : MonoBehaviour
 
     /// <summary>
     /// Check all registered achievements
+    /// Skips FirstSteps since it's a one-time signup achievement
     /// </summary>
     public async void CheckAllAchievements()
     {
@@ -169,6 +170,12 @@ public class AchievementChecker : MonoBehaviour
         
         foreach (var achievement in achievements.Values)
         {
+            // Skip FirstSteps - it's only checked on signup, not during normal gameplay
+            if (achievement.name == "FirstSteps")
+            {
+                continue;
+            }
+            
             Debug.Log($"Checking achievement: {achievement.name}");
             bool isUnlocked = await achievement.checkCondition(playerId);
             
@@ -350,13 +357,20 @@ public class AchievementChecker : MonoBehaviour
     /// <summary>
     /// FIRST STEPS: Unlocked when signup is successful
     /// This achievement is triggered directly from SignupForm after account creation
+    /// Only unlocks once per player
     /// </summary>
     private async Task<bool> CheckFirstStepsCondition(string playerId)
     {
-        // This achievement is only called explicitly after successful signup
-        // Always return true when checked (signup already validated the new account)
+        // Check if FirstSteps has already been unlocked
+        bool alreadyUnlocked = await IsAchievementUnlocked(playerId, "FirstSteps");
+        
+        if (alreadyUnlocked)
+        {
+            return false; // Already unlocked, don't unlock again
+        }
+        
         Debug.Log("✓ First Steps achievement unlocked - Welcome new player!");
-        return await Task.FromResult(true);
+        return true; // Not yet unlocked, so unlock it now
     }
 
     // ADD MORE ACHIEVEMENT CONDITIONS HERE:

@@ -13,6 +13,7 @@ public class LoginForm : MonoBehaviour
     [SerializeField] private TMP_InputField emailField;
     [SerializeField] private TMP_InputField passwordField;
     [SerializeField] private TextMeshProUGUI errorText;
+    [SerializeField] private SceneChanger sceneChanger;
 
     // Replaces Signup(): performs email/password sign-in
     public async void Login()
@@ -56,6 +57,16 @@ public class LoginForm : MonoBehaviour
             _ = LoadPlayerStatsAsync(firebaseUser.UserId);
 
             ShowError("");
+            
+            // Trigger scene change on successful login
+            if (sceneChanger != null)
+            {
+                sceneChanger.LoadTargetScene();
+            }
+            else
+            {
+                Debug.LogWarning("SceneChanger reference not set in LoginForm");
+            }
         }
         catch (Exception e)
         {

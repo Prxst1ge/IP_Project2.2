@@ -14,6 +14,7 @@ public class SignupForm : MonoBehaviour
     [SerializeField] private TMP_InputField passwordField;
     [SerializeField] private TMP_InputField displayNameField;
     [SerializeField] private TextMeshProUGUI errorText;
+    [SerializeField] private SceneChanger sceneChanger;
 
     // Simplified signup entry point using async/await
     public async void Signup()
@@ -68,6 +69,16 @@ public class SignupForm : MonoBehaviour
 
             ShowError("");
             Debug.Log("Signup completed and saved profile");
+            
+            // Trigger scene change on successful signup
+            if (sceneChanger != null)
+            {
+                sceneChanger.LoadTargetScene();
+            }
+            else
+            {
+                Debug.LogWarning("SceneChanger reference not set in SignupForm");
+            }
         }
         catch (Exception e)
         {
@@ -119,7 +130,14 @@ public class SignupForm : MonoBehaviour
 
     void ShowError(string error)
     {
-        errorText.text = error;
+        if (errorText != null)
+        {
+            errorText.text = error;
+        }
+        else
+        {
+            Debug.LogError("Error text field not assigned in SignupForm: " + error);
+        }
     }
 
     // Add this helper so CurrentUserId() exists for the DB write

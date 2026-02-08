@@ -512,18 +512,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 26392668}
-        m_TargetAssemblyTypeName: SceneChanger, Assembly-CSharp
-        m_MethodName: LoadTargetScene
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &63312534
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -923,7 +911,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 
+  m_text: NIL
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1397,8 +1385,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 97280080}
   - {fileID: 1733210156}
+  - {fileID: 97280080}
   m_Father: {fileID: 1956115270}
   m_LocalEulerAnglesHint: {x: 0, y: -12.806, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -2945,8 +2933,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1944831351}
   - {fileID: 504056499}
+  - {fileID: 1944831351}
   m_Father: {fileID: 1658085985}
   m_LocalEulerAnglesHint: {x: 0, y: -12.806, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -3086,18 +3074,6 @@ MonoBehaviour:
       - m_Target: {fileID: 1517754848}
         m_TargetAssemblyTypeName: LoginForm, Assembly-CSharp
         m_MethodName: Login
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 26392668}
-        m_TargetAssemblyTypeName: SceneChanger, Assembly-CSharp
-        m_MethodName: LoadTargetScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4769,6 +4745,7 @@ MonoBehaviour:
   passwordField: {fileID: 99808643}
   displayNameField: {fileID: 11738609}
   errorText: {fileID: 97280078}
+  sceneChanger: {fileID: 26392668}
 --- !u!114 &1517754848
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4784,6 +4761,7 @@ MonoBehaviour:
   emailField: {fileID: 73215886}
   passwordField: {fileID: 1328467449}
   errorText: {fileID: 1944831352}
+  sceneChanger: {fileID: 26392668}
 --- !u!1 &1531227481
 GameObject:
   m_ObjectHideFlags: 0
@@ -6736,7 +6714,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7242092003390914323, guid: a37aa3fc9d25d9c4481fb7d27a05de68, type: 3}
       propertyPath: loadDelay
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7242092003390914323, guid: a37aa3fc9d25d9c4481fb7d27a05de68, type: 3}
       propertyPath: targetScene

@@ -10,30 +10,35 @@ using System.Threading.Tasks;
 using Firebase.Auth;
 using Firebase.Database;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 [System.Serializable]
 public class StagePortalPair
 {
-    [Tooltip("Stage name (e.g., 'Stage1', 'Stage2')")]
-    public string stageName;
+    [FormerlySerializedAs("stageName")]
+    [Tooltip("Stage key used in Firebase (e.g., 'Stage1', 'Stage2')")]
+    public string stageKey;
     
-    [Tooltip("Portal prefab that leads to the next stage")]
-    public GameObject nextStagePortal;
+    [FormerlySerializedAs("nextStagePortal")]
+    [Tooltip("Portal GameObject that leads to the next stage")]
+    public GameObject portalToNextStage;
     
     [HideInInspector]
-    public bool isUnlocked = false;
+    [FormerlySerializedAs("isUnlocked")]
+    public bool unlocked = false;
 }
 
 public class StageUnlockManager : MonoBehaviour
 {
     [Header("All Stage Portals")]
     [Tooltip("Configure all 4 stages and their corresponding portals")]
-    public List<StagePortalPair> stagePortals = new List<StagePortalPair>()
+    [FormerlySerializedAs("stagePortals")]
+    public List<StagePortalPair> stagePortalLinks = new List<StagePortalPair>()
     {
-        new StagePortalPair { stageName = "Stage1" },
-        new StagePortalPair { stageName = "Stage2" },
-        new StagePortalPair { stageName = "Stage3" },
-        new StagePortalPair { stageName = "Stage4" }
+        new StagePortalPair { stageKey = "Stage1" },
+        new StagePortalPair { stageKey = "Stage2" },
+        new StagePortalPair { stageKey = "Stage3" },
+        new StagePortalPair { stageKey = "Stage4" }
     };
     
     [Header("Settings")]
@@ -48,11 +53,11 @@ public class StageUnlockManager : MonoBehaviour
     async void Start()
     {
         // Initially disable all portal prefabs
-        foreach (var stagePortal in stagePortals)
+        foreach (var stagePortal in stagePortalLinks)
         {
-            if (stagePortal.nextStagePortal != null)
+            if (stagePortal.portalToNextStage != null)
             {
-                stagePortal.nextStagePortal.SetActive(false);
+                stagePortal.portalToNextStage.SetActive(false);
             }
         }
         
@@ -129,21 +134,13 @@ public class StageUnlockManager : MonoBehaviour
             Debug.Log("Checking completion status for all stages...");
 
             // Check each stage
-            foreach (var stagePortal in stagePortals)
+            foreach (var stagePortal in stagePortalLinks)
             {
-                if (string.IsNullOrEmpty(stagePortal.stageName))
+                if (string.IsNullOrEmpty(stagePortal.stageKey))
                     continue;
-
-                // Stage 1 is always unlocked, no timing check required
-                if (stagePortal.stageName == "Stage1")
-                {
-                    Debug.Log("Stage1 is always available. Unlocking portal...");
-                    UnlockPortal(stagePortal);
-                    continue;
-                }
 
                 // Build the path: /Game/Players/{userId}/Stats/StageCompletionTimings/{stageName}
-                string path = $"Game/Players/{userId}/Stats/StageCompletionTimings/{stagePortal.stageName}";
+                string path = $"Game/Players/{userId}/Stats/StageCompletionTimings/{stagePortal.stageKey}";
 
                 // Get the completion time from Firebase
                 var snapshot = await dbRef.Child(path).GetValueAsync();
@@ -155,7 +152,7 @@ public class StageUnlockManager : MonoBehaviour
                     
                     if (int.TryParse(snapshot.Value.ToString(), out completionTime))
                     {
-                        Debug.Log($"{stagePortal.stageName} completion time: {completionTime} seconds");
+                        Debug.Log($"{stagePortal.stageKey} completion time: {completionTime} seconds");
                         
                         // Check if timing is more than 0 (stage completed)
                         if (completionTime > 0)
@@ -164,17 +161,17 @@ public class StageUnlockManager : MonoBehaviour
                         }
                         else
                         {
-                            Debug.Log($"{stagePortal.stageName} not completed yet (timing = 0). Portal remains locked.");
+                            Debug.Log($"{stagePortal.stageKey} not completed yet (timing = 0). Portal remains locked.");
                         }
                     }
                     else
                     {
-                        Debug.LogWarning($"Could not parse completion time for {stagePortal.stageName}. Value: {snapshot.Value}");
+                        Debug.LogWarning($"Could not parse completion time for {stagePortal.stageKey}. Value: {snapshot.Value}");
                     }
                 }
                 else
                 {
-                    Debug.Log($"{stagePortal.stageName} has no completion data. Portal remains locked.");
+                    Debug.Log($"{stagePortal.stageKey} has no completion data. Portal remains locked.");
                 }
             }
         }
@@ -198,27 +195,27 @@ public class StageUnlockManager : MonoBehaviour
     /// </summary>
     private void UnlockPortal(StagePortalPair stagePortal)
     {
-        if (stagePortal.isUnlocked)
+        if (stagePortal.unlocked)
         {
             return;
         }
 
-        stagePortal.isUnlocked = true;
+        stagePortal.unlocked = true;
         
         // Enable the portal prefab
-        if (stagePortal.nextStagePortal != null)
+        if (stagePortal.portalToNextStage != null)
         {
-            stagePortal.nextStagePortal.SetActive(true);
+            stagePortal.portalToNextStage.SetActive(true);
             
             // Extract stage number for logging
-            string stageNumber = stagePortal.stageName.Replace("Stage", "");
+            string stageNumber = stagePortal.stageKey.Replace("Stage", "");
             int nextStageNum = int.Parse(stageNumber) + 1;
             
-            Debug.Log($"✓ {stagePortal.stageName} completed! Portal to Stage {nextStageNum} enabled!");
+            Debug.Log($"✓ {stagePortal.stageKey} completed! Portal to Stage {nextStageNum} enabled!");
         }
         else
         {
-            Debug.LogWarning($"Next stage portal for {stagePortal.stageName} is not assigned!");
+            Debug.LogWarning($"Next stage portal for {stagePortal.stageKey} is not assigned!");
         }
     }
 
@@ -227,11 +224,11 @@ public class StageUnlockManager : MonoBehaviour
     /// </summary>
     private void SetPortalState(bool unlocked)
     {
-        foreach (var stagePortal in stagePortals)
+        foreach (var stagePortal in stagePortalLinks)
         {
-            if (stagePortal.nextStagePortal != null)
+            if (stagePortal.portalToNextStage != null)
             {
-                stagePortal.nextStagePortal.SetActive(unlocked);
+                stagePortal.portalToNextStage.SetActive(unlocked);
             }
         }
     }
@@ -249,8 +246,8 @@ public class StageUnlockManager : MonoBehaviour
     /// </summary>
     public bool IsPortalUnlocked(string stageName)
     {
-        var stagePortal = stagePortals.Find(sp => sp.stageName == stageName);
-        return stagePortal != null && stagePortal.isUnlocked;
+        var stagePortal = stagePortalLinks.Find(sp => sp.stageKey == stageName);
+        return stagePortal != null && stagePortal.unlocked;
     }
 
     /// <summary>
@@ -259,9 +256,9 @@ public class StageUnlockManager : MonoBehaviour
     public Dictionary<string, bool> GetAllUnlockStates()
     {
         var states = new Dictionary<string, bool>();
-        foreach (var stagePortal in stagePortals)
+        foreach (var stagePortal in stagePortalLinks)
         {
-            states[stagePortal.stageName] = stagePortal.isUnlocked;
+            states[stagePortal.stageKey] = stagePortal.unlocked;
         }
         return states;
     }

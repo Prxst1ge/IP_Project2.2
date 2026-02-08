@@ -2247,7 +2247,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 4996914174195990528, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
@@ -2313,7 +2314,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6814216647950209920, guid: 2b605e1286ca4354bb199c96a91cc39d, type: 3}
       propertyPath: m_Name
-      value: Portal (3)
+      value: Portal 4
       objectReference: {fileID: 0}
     - target: {fileID: 6814216647950209920, guid: 2b605e1286ca4354bb199c96a91cc39d, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -4495,7 +4496,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6814216647950209920, guid: 2b605e1286ca4354bb199c96a91cc39d, type: 3}
       propertyPath: m_Name
-      value: Portal (1)
+      value: Portal 2
       objectReference: {fileID: 0}
     - target: {fileID: 6814216647950209920, guid: 2b605e1286ca4354bb199c96a91cc39d, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -5785,7 +5786,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6814216647950209920, guid: 2b605e1286ca4354bb199c96a91cc39d, type: 3}
       propertyPath: m_Name
-      value: Portal (2)
+      value: Portal 3
       objectReference: {fileID: 0}
     - target: {fileID: 6814216647950209920, guid: 2b605e1286ca4354bb199c96a91cc39d, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -7728,21 +7729,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29cf37eadcbc25d43a1c64dc6ba1a002, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StageUnlockManager
-  stagePortals:
-  - stageName: Stage1
-    nextStagePortal: {fileID: 8322789985120023313}
-    isUnlocked: 0
-  - stageName: Stage2
-    nextStagePortal: {fileID: 1228190804}
-    isUnlocked: 0
-  - stageName: Stage3
-    nextStagePortal: {fileID: 1625084624}
-    isUnlocked: 0
-  - stageName: Stage4
-    nextStagePortal: {fileID: 458170424}
-    isUnlocked: 0
+  stagePortalLinks:
+  - stageKey: Stage1
+    portalToNextStage: {fileID: 1228190804}
+    unlocked: 0
+  - stageKey: Stage2
+    portalToNextStage: {fileID: 1625084624}
+    unlocked: 0
+  - stageKey: Stage3
+    portalToNextStage: {fileID: 458170424}
+    unlocked: 0
   checkOnStart: 1
-  autoCheckInterval: 0
+  autoCheckInterval: 10
 --- !u!4 &2128864307
 Transform:
   m_ObjectHideFlags: 0
@@ -8235,7 +8233,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6814216647950209920, guid: 2b605e1286ca4354bb199c96a91cc39d, type: 3}
       propertyPath: m_Name
-      value: Portal
+      value: Portal 1
       objectReference: {fileID: 0}
     - target: {fileID: 6814216647950209920, guid: 2b605e1286ca4354bb199c96a91cc39d, type: 3}
       propertyPath: m_StaticEditorFlags

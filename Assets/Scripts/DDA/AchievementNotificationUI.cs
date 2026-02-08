@@ -5,6 +5,7 @@ using Firebase.Storage;
 using System.Threading.Tasks;
 using System;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class AchievementNotificationUI : MonoBehaviour
 {
@@ -56,11 +57,31 @@ public class AchievementNotificationUI : MonoBehaviour
         HideImmediate();
 
         // Get main camera for VR support
-        cameraTransform = Camera.main.transform;
+        cameraTransform = Camera.main != null ? Camera.main.transform : null;
+    }
+
+    void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        cameraTransform = Camera.main != null ? Camera.main.transform : null;
     }
 
     void Update()
     {
+        if (cameraTransform == null && Camera.main != null)
+        {
+            cameraTransform = Camera.main.transform;
+        }
+
         // Keep notification panel in front of camera for VR
         if (isShowing && cameraTransform != null)
         {
