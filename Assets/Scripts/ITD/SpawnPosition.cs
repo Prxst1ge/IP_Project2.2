@@ -26,18 +26,21 @@ public class SpawnPosition : MonoBehaviour
             return;
         }
 
-        // 1. If the player uses a CharacterController, we must disable it briefly
-        // or the physics engine might override our teleportation.
+        // If the player uses a CharacterController, we must disable it briefly
         CharacterController cc = player.GetComponent<CharacterController>();
         if (cc != null) cc.enabled = false;
 
-        // 2. Move position and rotation to match the Empty
+        // Move position and rotation to match the Empty
         player.position = spawnPoint.position;
         player.rotation = spawnPoint.rotation;
 
-        // 3. Re-enable CharacterController
+        // Re-enable CharacterController
         if (cc != null) cc.enabled = true;
+        {
+            Debug.Log("Player CharacterController re-enabled.");
+        }
 
         Debug.Log("Player moved to Spawn Point");
     }
+
 }
