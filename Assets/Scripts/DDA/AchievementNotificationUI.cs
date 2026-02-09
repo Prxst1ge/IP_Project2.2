@@ -22,6 +22,7 @@ public class AchievementNotificationUI : MonoBehaviour
     [SerializeField] private float displayDuration = 5f;
     [SerializeField] private float fadeInDuration = 0.5f;
     [SerializeField] private float fadeOutDuration = 0.5f;
+    [SerializeField] private float distanceFromCamera = 0.5f;
 
     [Header("Audio")]
     [SerializeField] private AudioSource audioSource;
@@ -85,8 +86,8 @@ public class AchievementNotificationUI : MonoBehaviour
         // Keep notification panel in front of camera for VR
         if (isShowing && cameraTransform != null)
         {
-            // Position 1.5 units in front of camera
-            notificationPanel.transform.position = cameraTransform.position + cameraTransform.forward * 0.5f;
+            // Position in front of camera at specified distance
+            notificationPanel.transform.position = cameraTransform.position + cameraTransform.forward * distanceFromCamera;
 
             // Make it face the camera
             notificationPanel.transform.LookAt(cameraTransform.position);
