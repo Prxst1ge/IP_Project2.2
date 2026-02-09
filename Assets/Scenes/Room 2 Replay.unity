@@ -93,7 +93,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 112000000, guid: e9480de99ef5f6e48b2b02cc5b370a6c, type: 2}
+  m_LightingDataAsset: {fileID: 112000000, guid: 8fc54cbf952f4694a9a572b69824f079, type: 2}
   m_LightingSettings: {fileID: 4890085278179872738, guid: 78151f5e58fb9f749bd5225f789faa27, type: 2}
 --- !u!196 &4
 NavMeshSettings:
@@ -5200,6 +5200,21 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5264746365215493356, guid: 36e37d284f9a5a0478d9fb78bfa48754, type: 3}
   m_PrefabInstance: {fileID: 3653219246641911773}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &4914115761904791312
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8932903510799822183}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 4.67401, y: 1.28001, z: -35.71398}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &4954446936027792392
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5275,12 +5290,47 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7843022096043188061, guid: 098bd3bca6afc85429a9823ed2a1fe7e, type: 3}
   m_PrefabInstance: {fileID: 4954446936027792392}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &5174878238154884748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8932903510799822183}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.RenderPipelines.Core.Runtime::UnityEngine.Rendering.Volume
+  m_IsGlobal: 1
+  priority: 0
+  blendDistance: 0
+  weight: 1
+  sharedProfile: {fileID: 11400000, guid: 5c7ee6f02c0c2264d9a83ce37eaa6b69, type: 2}
+--- !u!1 &8932903510799822183
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4914115761904791312}
+  - component: {fileID: 5174878238154884748}
+  m_Layer: 0
+  m_Name: Global Volume
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 299639869}
   - {fileID: 1120355108}
+  - {fileID: 4914115761904791312}
   - {fileID: 441087506}
   - {fileID: 756192408}
   - {fileID: 2092139010}
