@@ -18416,7 +18416,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 671212811}
-  - component: {fileID: 671212813}
   - component: {fileID: 671212812}
   - component: {fileID: 671212814}
   m_Layer: 0
@@ -18462,20 +18461,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.7300692, y: 2.0422711, z: 0.3088038}
   m_Center: {x: -0.3593974, y: -0.52113634, z: 0.11507118}
---- !u!114 &671212813
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 671212810}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6e5092f3748b1b144b6d450d38604670, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::RepairButton
-  redesignScript: {fileID: 88155972}
-  targetTag: Player
 --- !u!114 &671212814
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29352,7 +29337,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1120137915}
-  - component: {fileID: 1120137914}
   - component: {fileID: 1120137913}
   - component: {fileID: 1120137912}
   m_Layer: 0
@@ -29469,20 +29453,6 @@ MonoBehaviour:
   m_StartingInteractionStrengthFilters: []
   m_AutoFindParentInteractableInHierarchy: 0
   m_ParentInteractableObject: {fileID: 0}
---- !u!114 &1120137914
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1120137911}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6e5092f3748b1b144b6d450d38604670, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::RepairButton
-  redesignScript: {fileID: 1974227995}
-  targetTag: Player
 --- !u!4 &1120137915
 Transform:
   m_ObjectHideFlags: 0

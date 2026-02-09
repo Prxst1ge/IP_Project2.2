@@ -5647,7 +5647,6 @@ GameObject:
   m_Component:
   - component: {fileID: 303495568}
   - component: {fileID: 303495570}
-  - component: {fileID: 303495569}
   - component: {fileID: 303495571}
   m_Layer: 0
   m_Name: Redesign_Button
@@ -5671,20 +5670,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 518046096}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &303495569
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 303495567}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6e5092f3748b1b144b6d450d38604670, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::RepairButton
-  redesignScript: {fileID: 1269281754}
-  targetTag: Player
 --- !u!65 &303495570
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8042,7 +8027,6 @@ GameObject:
   m_Component:
   - component: {fileID: 425988356}
   - component: {fileID: 425988359}
-  - component: {fileID: 425988358}
   - component: {fileID: 425988357}
   m_Layer: 0
   m_Name: Redesign_Button (1)
@@ -8152,20 +8136,6 @@ MonoBehaviour:
   m_StartingInteractionStrengthFilters: []
   m_AutoFindParentInteractableInHierarchy: 0
   m_ParentInteractableObject: {fileID: 0}
---- !u!114 &425988358
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 425988355}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6e5092f3748b1b144b6d450d38604670, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::RepairButton
-  redesignScript: {fileID: 1269281754}
-  targetTag: Player
 --- !u!65 &425988359
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8366,6 +8336,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 202364688, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.93
+      objectReference: {fileID: 0}
+    - target: {fileID: 202364688, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 12.05
+      objectReference: {fileID: 0}
     - target: {fileID: 58445280694286476, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -28718,7 +28696,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1771652178}
   - component: {fileID: 1771652181}
-  - component: {fileID: 1771652180}
   - component: {fileID: 1771652179}
   m_Layer: 0
   m_Name: Redesign_Button (2)
@@ -28828,20 +28805,6 @@ MonoBehaviour:
   m_StartingInteractionStrengthFilters: []
   m_AutoFindParentInteractableInHierarchy: 0
   m_ParentInteractableObject: {fileID: 0}
---- !u!114 &1771652180
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1771652177}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6e5092f3748b1b144b6d450d38604670, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::RepairButton
-  redesignScript: {fileID: 1269281754}
-  targetTag: Player
 --- !u!65 &1771652181
 BoxCollider:
   m_ObjectHideFlags: 0
