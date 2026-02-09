@@ -66,9 +66,7 @@ public class WheelInteractable : XRBaseInteractable
     }
 
 
-    /// Generates a grab point to mediate physics interaction with the wheel's rigidbody. This "grab
-    /// point" contains an XRGrabInteractable component, as well as a rigidbody. It's fused to the wheel using a Fixed Joint.
-    /// <param name="interactor">Interactor which is making the selection.</param>
+    // Spawns a grab point at the interactor's position and attaches it to this wheel.
     void SpawnGrabPoint(XRBaseInteractor interactor)
     {
         // If there is an active grab point, cancel selection.
@@ -98,6 +96,7 @@ public class WheelInteractable : XRBaseInteractable
         interactionManager.SelectEnter((IXRSelectInteractor)interactor, (IXRSelectInteractable)grabPoint.GetComponent<XRGrabInteractable>());
     }
 
+    // Assists braking by applying counter-torque when the interactor's velocity is near zero.
     IEnumerator BrakeAssist(XRBaseInteractor interactor)
     {
         VelocitySupplier interactorVelocity = interactor.GetComponent<VelocitySupplier>();
@@ -116,12 +115,12 @@ public class WheelInteractable : XRBaseInteractable
         }
     }
 
+    // Monitors the distance between the interactor and the wheel's collider to auto-deselect if too far.
     IEnumerator MonitorDetachDistance(XRBaseInteractor interactor)
     {
         while (grabPoint)
         {
-            // [FIX] Calculate the ACTUAL center of the collider in world space
-            // This accounts for the offset if your collider isn't at (0,0,0)
+            // Calculate the ACTUAL center of the collider in world space
             Vector3 colliderWorldCenter = transform.TransformPoint(m_SphereCollider.center);
 
             // Measure distance from the Green Sphere Center, not the Pivot
@@ -142,9 +141,7 @@ public class WheelInteractable : XRBaseInteractable
         // Interval between iterations of coroutine, in seconds.
         float runInterval = 0.1f;
 
-        // NEW WAY (XRI 3.0+):
-        // Instead of getting a "Controller" component, we check if this Interactor 
-        // supports inputs (like haptics) by casting it to 'XRBaseInputInteractor'.
+        // Cast interactor to input interactor
         var inputInteractor = interactor as XRBaseInputInteractor;
 
         // If this interactor doesn't support inputs (e.g. it's a Gaze Interactor), stop here.
