@@ -1134,8 +1134,149 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4148049382183546235, guid: 9914ea81e9fef7940b1e4f31dd97acec, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1284222011}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2999377438571314418, guid: 9914ea81e9fef7940b1e4f31dd97acec, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 26518772}
+    - targetCorrespondingSourceObject: {fileID: 2999377438571314418, guid: 9914ea81e9fef7940b1e4f31dd97acec, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 26518771}
+    - targetCorrespondingSourceObject: {fileID: 2999377438571314418, guid: 9914ea81e9fef7940b1e4f31dd97acec, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 26518770}
   m_SourcePrefab: {fileID: 100100000, guid: 9914ea81e9fef7940b1e4f31dd97acec, type: 3}
+--- !u!1 &26518769 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2999377438571314418, guid: 9914ea81e9fef7940b1e4f31dd97acec, type: 3}
+  m_PrefabInstance: {fileID: 26518768}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &26518770
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 26518769}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.095463246, y: 0.09624423, z: 0.0022656247}
+  m_Center: {x: -0.0000005438924, y: 0, z: 0.0011400636}
+--- !u!114 &26518771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 26518769}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a35f6cfbfba9b548aaa00d52cfe8a50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.XR.Interaction.Toolkit::UnityEngine.XR.Interaction.Toolkit.Interactables.XRSimpleInteractable
+  m_InteractionManager: {fileID: 0}
+  m_Colliders: []
+  m_InteractionLayers:
+    m_Bits: 1
+  m_DistanceCalculationMode: 1
+  m_SelectMode: 0
+  m_FocusMode: 1
+  m_CustomReticle: {fileID: 0}
+  m_AllowGazeInteraction: 0
+  m_AllowGazeSelect: 0
+  m_OverrideGazeTimeToSelect: 0
+  m_GazeTimeToSelect: 0.5
+  m_OverrideTimeToAutoDeselectGaze: 0
+  m_TimeToAutoDeselectGaze: 3
+  m_AllowGazeAssistance: 0
+  m_FirstHoverEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_LastHoverExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_HoverEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_HoverExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FirstSelectEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_LastSelectExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_SelectEntered:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8670129212499486868}
+        m_TargetAssemblyTypeName: LiftDoor, Assembly-CSharp
+        m_MethodName: OpenDoor
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  m_SelectExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FirstFocusEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_LastFocusExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FocusEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FocusExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Activated:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Deactivated:
+    m_PersistentCalls:
+      m_Calls: []
+  m_StartingHoverFilters: []
+  m_StartingSelectFilters: []
+  m_StartingInteractionStrengthFilters: []
+  m_AutoFindParentInteractableInHierarchy: 0
+  m_ParentInteractableObject: {fileID: 0}
+--- !u!114 &26518772
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 26518769}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44c5bc2d4f9fd3642b50f434c3f768ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LiftDoor
+  leftDoor: {fileID: 2051297077}
+  rightDoor: {fileID: 994065214}
+  leftOpenAnchor: {fileID: 1081261409}
+  leftClosedAnchor: {fileID: 1563664072}
+  rightOpenAnchor: {fileID: 317655446}
+  rightClosedAnchor: {fileID: 1284222011}
+  speed: 0.2
+  openDuration: 5
 --- !u!1001 &28746172
 PrefabInstance:
   m_ObjectHideFlags: 0
