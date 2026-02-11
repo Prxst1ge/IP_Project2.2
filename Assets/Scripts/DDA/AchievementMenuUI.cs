@@ -4,6 +4,7 @@ using TMPro;
 using Firebase.Database;
 using Firebase.Auth;
 using Firebase.Storage;
+using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -14,6 +15,8 @@ public class AchievementMenuUI : MonoBehaviour
     {
         public string achievementId;
         public Image placeholderImage;
+        [Tooltip("Optional: Override the automatic snake_case conversion with a custom badge filename. Leave empty to use auto-conversion.")]
+        public string customBadgeName;
     }
 
     [SerializeField]
@@ -28,15 +31,25 @@ public class AchievementMenuUI : MonoBehaviour
     [SerializeField]
     private string placeholderStorageBasePath = "PlaceholderImages/";
 
+    [SerializeField]
+    private float achievementCheckInterval = 5f; // Check for achievements every 5 seconds
+
     private DatabaseReference databaseReference;
     private FirebaseAuth auth;
     private FirebaseStorage storage;
     private Dictionary<string, Sprite> imageCache = new Dictionary<string, Sprite>();
+    private Coroutine achievementCheckCoroutine;
 
     private async void Start()
     {
         InitializeFirebase();
         await LoadAndDisplayAchievements();
+        StartPeriodicAchievementCheck();
+    }
+
+    private void OnDestroy()
+    {
+        StopPeriodicAchievementCheck();
     }
 
     private void InitializeFirebase()
@@ -145,9 +158,11 @@ public class AchievementMenuUI : MonoBehaviour
             // Load and update the image based on unlock status
             if (isUnlocked)
             {
-                // Construct the badge path from achievement ID (convert to snake_case)
-                string achievementIdSnakeCase = ConvertToSnakeCase(achievementUI.achievementId);
-                string badgePath = achievementStorageBasePath + achievementIdSnakeCase + ".png";
+                // Use custom badge name if provided, otherwise convert to snake_case
+                string badgeFileName = string.IsNullOrEmpty(achievementUI.customBadgeName)
+                    ? ConvertToSnakeCase(achievementUI.achievementId)
+                    : achievementUI.customBadgeName;
+                string badgePath = achievementStorageBasePath + badgeFileName + ".png";
                 Sprite badgeSprite = await LoadImageFromFirebaseStorage(badgePath);
                 if (badgeSprite != null)
                 {
@@ -156,9 +171,11 @@ public class AchievementMenuUI : MonoBehaviour
             }
             else
             {
-                // Load locked placeholder from Firebase Storage
-                string achievementIdSnakeCase = ConvertToSnakeCase(achievementUI.achievementId);
-                string lockedImagePath = placeholderStorageBasePath + achievementIdSnakeCase + "_locked.png";
+                // Use custom badge name if provided, otherwise convert to snake_case
+                string lockedFileName = string.IsNullOrEmpty(achievementUI.customBadgeName)
+                    ? ConvertToSnakeCase(achievementUI.achievementId) + "_locked"
+                    : achievementUI.customBadgeName + "_locked";
+                string lockedImagePath = placeholderStorageBasePath + lockedFileName + ".png";
                 Sprite placeholderSprite = await LoadImageFromFirebaseStorage(lockedImagePath);
                 if (placeholderSprite != null)
                 {
@@ -205,6 +222,44 @@ public class AchievementMenuUI : MonoBehaviour
     }
 
     /// <summary>
+    /// Starts periodic checking for achievement updates from Firebase
+    /// </summary>
+    public void StartPeriodicAchievementCheck()
+    {
+        if (achievementCheckCoroutine != null)
+        {
+            Debug.LogWarning("Achievement check coroutine is already running.");
+            return;
+        }
+
+        achievementCheckCoroutine = StartCoroutine(PeriodicAchievementCheckCoroutine());
+    }
+
+    /// <summary>
+    /// Stops periodic checking for achievement updates
+    /// </summary>
+    public void StopPeriodicAchievementCheck()
+    {
+        if (achievementCheckCoroutine != null)
+        {
+            StopCoroutine(achievementCheckCoroutine);
+            achievementCheckCoroutine = null;
+        }
+    }
+
+    /// <summary>
+    /// Coroutine that checks for achievement updates at regular intervals
+    /// </summary>
+    private IEnumerator PeriodicAchievementCheckCoroutine()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(achievementCheckInterval);
+            _ = LoadAndDisplayAchievements(); // Fire and forget
+        }
+    }
+
+    /// <summary>
     /// Call this method to manually refresh achievements from Firebase
     /// </summary>
     public async void RefreshAchievements()
@@ -229,10 +284,19 @@ public class AchievementMenuUI : MonoBehaviour
     /// </summary>
     public void AddAchievementUI(string achievementId, Image targetImage)
     {
+        AddAchievementUI(achievementId, targetImage, "");
+    }
+
+    /// <summary>
+    /// Add a new achievement UI dynamically with custom badge name
+    /// </summary>
+    public void AddAchievementUI(string achievementId, Image targetImage, string customBadgeName)
+    {
         AchievementUI newAchievement = new AchievementUI
         {
             achievementId = achievementId,
-            placeholderImage = targetImage
+            placeholderImage = targetImage,
+            customBadgeName = customBadgeName
         };
 
         achievementUIList.Add(newAchievement);

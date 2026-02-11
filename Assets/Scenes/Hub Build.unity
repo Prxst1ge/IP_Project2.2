@@ -7034,23 +7034,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AchievementMenuUI
   achievementUIList:
-  - achievementId: first_steps
+  - achievementId: FirstSteps
     placeholderImage: {fileID: 571813532}
-  - achievementId: beyond_color
+    customBadgeName: first_steps
+  - achievementId: BeyondColor
     placeholderImage: {fileID: 651991854}
-  - achievementId: sharp_at_short_range
+    customBadgeName: beyond_color
+  - achievementId: SharpAtShortRange
     placeholderImage: {fileID: 823659872}
-  - achievementId: smooth_operator
+    customBadgeName: sharp_at_short_range
+  - achievementId: SmoothOperator
     placeholderImage: {fileID: 1101431587}
-  - achievementId: one_arm_wonder
+    customBadgeName: smooth_operator
+  - achievementId: OneArmWonder
     placeholderImage: {fileID: 1402385238}
-  - achievementId: speedrunner
+    customBadgeName: one_arm_wonder
+  - achievementId: Speedrunner
     placeholderImage: {fileID: 1543646877}
-  - achievementId: walked_every_path
+    customBadgeName: speedrunner
+  - achievementId: WalkedEveryPath
     placeholderImage: {fileID: 1412813372}
+    customBadgeName: walked_every_path
   playerDisplayNameText: {fileID: 206825557}
   achievementStorageBasePath: achievements/
   placeholderStorageBasePath: PlaceholderImages/
+  achievementCheckInterval: 5
 --- !u!1001 &1674724663
 PrefabInstance:
   m_ObjectHideFlags: 0
