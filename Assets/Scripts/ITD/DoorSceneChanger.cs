@@ -13,9 +13,13 @@ public class DoorSceneChanger : MonoBehaviour
 
     public string debugMessage = "Player entered the door!"; // Debug message to show in console
 
+    private bool hasTriggered = false; // To prevent multiple triggers
+
     // This runs when the player walks into the trigger
     private void OnTriggerEnter(Collider other)
     {
+        if (hasTriggered) return;
+
         if (other.attachedRigidbody != null && other.attachedRigidbody.CompareTag("Player"))
         {
             LoadDestination();
@@ -32,11 +36,12 @@ public class DoorSceneChanger : MonoBehaviour
     {
         if (!string.IsNullOrEmpty(sceneToLoad))
         {
-            SceneManager.LoadScene(sceneToLoad);
+            TransitionManager.Instance.LoadSceneWithTransition(sceneToLoad);
         }
         else
         {
             Debug.LogError($"Door '{gameObject.name}' has no Scene Name assigned!");
+            UnityEngine.SceneManagement.SceneManager.LoadScene(sceneToLoad);
         }
     }
 }
