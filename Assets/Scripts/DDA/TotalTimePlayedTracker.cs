@@ -12,6 +12,8 @@ using UnityEngine;
 
 public class TotalTimePlayedTracker : MonoBehaviour
 {
+    public static TotalTimePlayedTracker Instance;
+
     [Header("Settings")]
     [Tooltip("Track time using unscaled delta time (ignores timeScale)")]
     public bool useUnscaledTime = true;
@@ -22,6 +24,21 @@ public class TotalTimePlayedTracker : MonoBehaviour
     private double sessionSeconds = 0;
     private double initialTotalSeconds = 0;
     private bool hasLoadedInitialTotal = false;
+
+    private void Awake()
+    {
+        // Singleton pattern
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
+    }
 
     private async void Start()
     {
