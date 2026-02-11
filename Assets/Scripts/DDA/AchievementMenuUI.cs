@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 using Firebase.Database;
 using Firebase.Auth;
 using Firebase.Storage;
@@ -13,14 +14,19 @@ public class AchievementMenuUI : MonoBehaviour
     {
         public string achievementId;
         public Image placeholderImage;
-        public string placeholderImagePath;
     }
 
     [SerializeField]
     private List<AchievementUI> achievementUIList = new List<AchievementUI>();
 
     [SerializeField]
+    private TextMeshProUGUI playerDisplayNameText;
+
+    [SerializeField]
     private string achievementStorageBasePath = "achievements/";
+
+    [SerializeField]
+    private string placeholderStorageBasePath = "PlaceholderImages/";
 
     private DatabaseReference databaseReference;
     private FirebaseAuth auth;
@@ -40,6 +46,12 @@ public class AchievementMenuUI : MonoBehaviour
         storage = FirebaseStorage.DefaultInstance;
     }
 
+    private string ConvertToSnakeCase(string input)
+    {
+        string snakeCase = System.Text.RegularExpressions.Regex.Replace(input, "([a-z0-9])([A-Z])", "$1_$2").ToLower();
+        return snakeCase;
+    }
+
     private async Task LoadAndDisplayAchievements()
     {
         try
@@ -52,6 +64,10 @@ public class AchievementMenuUI : MonoBehaviour
             }
 
             string userId = currentUser.UserId;
+            
+            // Fetch player display name
+            await LoadAndDisplayPlayerName(userId);
+            
             string path = $"Game/Players/{userId}/Stats/AchievementsCollected";
 
             // Fetch achievements from Firebase
@@ -70,6 +86,37 @@ public class AchievementMenuUI : MonoBehaviour
         catch (System.Exception e)
         {
             Debug.LogError($"Error loading achievements: {e.Message}");
+        }
+    }
+
+    private async Task LoadAndDisplayPlayerName(string userId)
+    {
+        try
+        {
+            if (playerDisplayNameText == null)
+            {
+                Debug.LogWarning("Player Display Name Text is not assigned.");
+                return;
+            }
+
+            string path = $"Game/Players/{userId}/Stats/DisplayName";
+            DataSnapshot snapshot = await databaseReference.Child(path).GetValueAsync();
+
+            if (snapshot.Exists && snapshot.Value != null)
+            {
+                string displayName = snapshot.Value.ToString();
+                playerDisplayNameText.text = $"Hello {displayName}";
+            }
+            else
+            {
+                Debug.LogWarning("DisplayName not found for this user.");
+                playerDisplayNameText.text = "Hello Unknown Player";
+            }
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogError($"Error loading player display name: {e.Message}");
+            playerDisplayNameText.text = "Error Loading Name";
         }
     }
 
@@ -98,18 +145,21 @@ public class AchievementMenuUI : MonoBehaviour
             // Load and update the image based on unlock status
             if (isUnlocked)
             {
-                // Construct the badge path from achievement ID
-                string badgePath = achievementStorageBasePath + achievementUI.achievementId + ".png";
+                // Construct the badge path from achievement ID (convert to snake_case)
+                string achievementIdSnakeCase = ConvertToSnakeCase(achievementUI.achievementId);
+                string badgePath = achievementStorageBasePath + achievementIdSnakeCase + ".png";
                 Sprite badgeSprite = await LoadImageFromFirebaseStorage(badgePath);
                 if (badgeSprite != null)
                 {
                     achievementUI.placeholderImage.sprite = badgeSprite;
                 }
             }
-            else if (!string.IsNullOrEmpty(achievementUI.placeholderImagePath))
+            else
             {
-                // Load placeholder if not unlocked
-                Sprite placeholderSprite = await LoadImageFromFirebaseStorage(achievementUI.placeholderImagePath);
+                // Load locked placeholder from Firebase Storage
+                string achievementIdSnakeCase = ConvertToSnakeCase(achievementUI.achievementId);
+                string lockedImagePath = placeholderStorageBasePath + achievementIdSnakeCase + "_locked.png";
+                Sprite placeholderSprite = await LoadImageFromFirebaseStorage(lockedImagePath);
                 if (placeholderSprite != null)
                 {
                     achievementUI.placeholderImage.sprite = placeholderSprite;
@@ -177,13 +227,12 @@ public class AchievementMenuUI : MonoBehaviour
     /// <summary>
     /// Add a new achievement UI dynamically
     /// </summary>
-    public void AddAchievementUI(string achievementId, Image targetImage, string placeholderPath)
+    public void AddAchievementUI(string achievementId, Image targetImage)
     {
         AchievementUI newAchievement = new AchievementUI
         {
             achievementId = achievementId,
-            placeholderImage = targetImage,
-            placeholderImagePath = placeholderPath
+            placeholderImage = targetImage
         };
 
         achievementUIList.Add(newAchievement);
