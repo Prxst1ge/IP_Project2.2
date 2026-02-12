@@ -1,3 +1,9 @@
+/*
+ * Script Name: TransitionManager.cs
+ * Student Name: Joel Wong Wan Hao
+ * Date: 12/02/2026
+ * Description: Controls the transition between scenes in a VR environment.
+ */
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -17,19 +23,55 @@ public class TransitionManager : MonoBehaviour
     public float logoHiddenY = 400f;        // Y Position above the screen
     public float logoVisibleY = 0f;         // Y Position in center of screen
 
+    private Canvas myCanvas; // Reference to the Canvas component
+
     private void Awake()
     {
-        // Ensures this script is accessible from anywhere
+        // Singleton Pattern
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject); // Keep the object alive when changing scenes
+            DontDestroyOnLoad(gameObject);
+
+            // Find the Canvas component immediately so we can use it later
+            myCanvas = GetComponent<Canvas>();
         }
         else
         {
-            Destroy(gameObject); // Destroy duplicate managers if scene reloads
+            Destroy(gameObject);
         }
     }
+
+    // This runs automatically every time a scene finishes loading
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        Camera newCamera = Camera.main;
+
+        // Safety Check: If we somehow lost the canvas reference, find it again
+        if (myCanvas == null) myCanvas = GetComponent<Canvas>();
+
+        if (newCamera != null && myCanvas != null)
+        {
+            myCanvas.worldCamera = newCamera;
+            myCanvas.planeDistance = 0.4f;
+        }
+        else
+        {
+            Debug.LogWarning("VRTransitionManager: Could not find MainCamera or Canvas!");
+        }
+    }
+
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    // Stop Listening when destroyed
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
 
     private void Start()
     {

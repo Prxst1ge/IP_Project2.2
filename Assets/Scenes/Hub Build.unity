@@ -6424,6 +6424,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1578719501910666886, guid: de772ed65a448ec478933b5820e1697b, type: 3}
   m_PrefabInstance: {fileID: 1552978137}
   m_PrefabAsset: {fileID: 0}
+--- !u!20 &1579015466 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 1767192439, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
+  m_PrefabInstance: {fileID: 441087506}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1583180100
 GameObject:
   m_ObjectHideFlags: 0
@@ -6552,6 +6557,107 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1578719501910666886, guid: de772ed65a448ec478933b5820e1697b, type: 3}
   m_PrefabInstance: {fileID: 1583424000}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1585061723
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3611983110722261855, guid: 948925977ac1bbc43a58b0a001c21d4b, type: 3}
+      propertyPath: m_Name
+      value: TransitionCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 5402168523222741033, guid: 948925977ac1bbc43a58b0a001c21d4b, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5402168523222741033, guid: 948925977ac1bbc43a58b0a001c21d4b, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5402168523222741033, guid: 948925977ac1bbc43a58b0a001c21d4b, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5402168523222741033, guid: 948925977ac1bbc43a58b0a001c21d4b, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5402168523222741033, guid: 948925977ac1bbc43a58b0a001c21d4b, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5402168523222741033, guid: 948925977ac1bbc43a58b0a001c21d4b, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5402168523222741033, guid: 948925977ac1bbc43a58b0a001c21d4b, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5402168523222741033, guid: 948925977ac1bbc43a58b0a001c21d4b, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5402168523222741033, guid: 948925977ac1bbc43a58b0a001c21d4b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5402168523222741033, guid: 948925977ac1bbc43a58b0a001c21d4b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5402168523222741033, guid: 948925977ac1bbc43a58b0a001c21d4b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5402168523222741033, guid: 948925977ac1bbc43a58b0a001c21d4b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5402168523222741033, guid: 948925977ac1bbc43a58b0a001c21d4b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5402168523222741033, guid: 948925977ac1bbc43a58b0a001c21d4b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5402168523222741033, guid: 948925977ac1bbc43a58b0a001c21d4b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5402168523222741033, guid: 948925977ac1bbc43a58b0a001c21d4b, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5402168523222741033, guid: 948925977ac1bbc43a58b0a001c21d4b, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5402168523222741033, guid: 948925977ac1bbc43a58b0a001c21d4b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5402168523222741033, guid: 948925977ac1bbc43a58b0a001c21d4b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5402168523222741033, guid: 948925977ac1bbc43a58b0a001c21d4b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6039388199014400991, guid: 948925977ac1bbc43a58b0a001c21d4b, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 1579015466}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 948925977ac1bbc43a58b0a001c21d4b, type: 3}
 --- !u!1001 &1585409098
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7079,29 +7185,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a5c521780f87334c8ed8c0c2394219b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AchievementMenuUI
-  achievementUIList:
-  - achievementId: FirstSteps
-    placeholderImage: {fileID: 571813532}
-    customBadgeName: first_steps
-  - achievementId: BeyondColor
-    placeholderImage: {fileID: 651991854}
-    customBadgeName: beyond_color
-  - achievementId: SharpAtShortRange
-    placeholderImage: {fileID: 823659872}
-    customBadgeName: sharp_at_short_range
-  - achievementId: SmoothOperator
-    placeholderImage: {fileID: 1101431587}
-    customBadgeName: smooth_operator
-  - achievementId: OneArmWonder
-    placeholderImage: {fileID: 1402385238}
-    customBadgeName: one_arm_wonder
-  - achievementId: Speedrunner
-    placeholderImage: {fileID: 1543646877}
-    customBadgeName: speedrunner
-  - achievementId: WalkedEveryPath
-    placeholderImage: {fileID: 1412813372}
-    customBadgeName: walked_every_path
-  playerDisplayNameText: {fileID: 206825557}
+  achievementUIList: []
+  playerDisplayNameText: {fileID: 0}
   achievementStorageBasePath: achievements/
   placeholderStorageBasePath: PlaceholderImages/
   achievementCheckInterval: 5
@@ -9412,3 +9497,4 @@ SceneRoots:
   - {fileID: 1957210308}
   - {fileID: 5506172150964675274}
   - {fileID: 1670683299}
+  - {fileID: 1585061723}
