@@ -8337,12 +8337,16 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 202364688, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 202364688, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.93
+      value: -0.07
       objectReference: {fileID: 0}
     - target: {fileID: 202364688, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 12.05
+      value: 0.48
       objectReference: {fileID: 0}
     - target: {fileID: 58445280694286476, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
       propertyPath: m_IsActive
@@ -13501,8 +13505,6 @@ MonoBehaviour:
   m_ParentInteractableObject: {fileID: 0}
   hapticsEnabled: 1
   deselectionThreshold: 0.25
-  label1: {fileID: 0}
-  label2: {fileID: 0}
 --- !u!54 &724174583
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -20190,6 +20192,38 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 805480576775917251, guid: 676179258cea33b4582582251253e5e2, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.0015941932
+      objectReference: {fileID: 0}
+    - target: {fileID: 805480576775917251, guid: 676179258cea33b4582582251253e5e2, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.0018944211
+      objectReference: {fileID: 0}
+    - target: {fileID: 805480576775917251, guid: 676179258cea33b4582582251253e5e2, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.0018944211
+      objectReference: {fileID: 0}
+    - target: {fileID: 805480576775917251, guid: 676179258cea33b4582582251253e5e2, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -978.61
+      objectReference: {fileID: 0}
+    - target: {fileID: 2621210028025817125, guid: 676179258cea33b4582582251253e5e2, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.0015941932
+      objectReference: {fileID: 0}
+    - target: {fileID: 2621210028025817125, guid: 676179258cea33b4582582251253e5e2, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.0018944211
+      objectReference: {fileID: 0}
+    - target: {fileID: 2621210028025817125, guid: 676179258cea33b4582582251253e5e2, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.0018944211
+      objectReference: {fileID: 0}
+    - target: {fileID: 2621210028025817125, guid: 676179258cea33b4582582251253e5e2, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -981.81
+      objectReference: {fileID: 0}
     - target: {fileID: 3410950511330223760, guid: 676179258cea33b4582582251253e5e2, type: 3}
       propertyPath: m_Name
       value: 'Room3_ReDesign_Exp '
@@ -35282,8 +35316,6 @@ MonoBehaviour:
   m_ParentInteractableObject: {fileID: 0}
   hapticsEnabled: 1
   deselectionThreshold: 0.25
-  label1: {fileID: 0}
-  label2: {fileID: 0}
 --- !u!1001 &2084536622
 PrefabInstance:
   m_ObjectHideFlags: 0

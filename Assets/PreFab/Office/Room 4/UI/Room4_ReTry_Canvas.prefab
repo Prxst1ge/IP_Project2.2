@@ -196,7 +196,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 5451825652539193442}
         m_TargetAssemblyTypeName: PanelNavigator, Assembly-CSharp
         m_MethodName: Next
         m_Mode: 1
@@ -815,7 +815,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 5451825652539193442}
         m_TargetAssemblyTypeName: PanelNavigator, Assembly-CSharp
         m_MethodName: Next
         m_Mode: 1
@@ -1834,7 +1834,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 5451825652539193442}
         m_TargetAssemblyTypeName: PanelNavigator, Assembly-CSharp
         m_MethodName: Previous
         m_Mode: 1
@@ -3656,6 +3656,57 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!1 &3574214408449633657
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7477550898577317960}
+  - component: {fileID: 5451825652539193442}
+  m_Layer: 0
+  m_Name: UIFlowManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7477550898577317960
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3574214408449633657}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1931.5706, y: -1077.1799, z: -53.886948}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7880081487561616904}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5451825652539193442
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3574214408449633657}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac8be02a5f488cb47811b7e4745c1c6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PanelNavigator
+  panels:
+  - {fileID: 7138950260317899779}
+  - {fileID: 5090278317492214935}
+  - {fileID: 3957381677814413859}
+  - {fileID: 6869257406458700044}
+  - {fileID: 7574397074661944124}
+  stepText: {fileID: 0}
 --- !u!1 &3601678932975478599
 GameObject:
   m_ObjectHideFlags: 0
@@ -4930,7 +4981,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 5451825652539193442}
         m_TargetAssemblyTypeName: PanelNavigator, Assembly-CSharp
         m_MethodName: Previous
         m_Mode: 1
@@ -5895,7 +5946,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 5451825652539193442}
         m_TargetAssemblyTypeName: PanelNavigator, Assembly-CSharp
         m_MethodName: Previous
         m_Mode: 1
@@ -6707,7 +6758,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 5451825652539193442}
         m_TargetAssemblyTypeName: PanelNavigator, Assembly-CSharp
         m_MethodName: Previous
         m_Mode: 1
@@ -7187,7 +7238,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 5451825652539193442}
         m_TargetAssemblyTypeName: PanelNavigator, Assembly-CSharp
         m_MethodName: Next
         m_Mode: 1
@@ -7456,7 +7507,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 5451825652539193442}
         m_TargetAssemblyTypeName: PanelNavigator, Assembly-CSharp
         m_MethodName: Next
         m_Mode: 1
@@ -8607,6 +8658,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 7477550898577317960}
   - {fileID: 7683559061434294050}
   - {fileID: 8348896762457126938}
   - {fileID: 1411034055528000375}
@@ -8664,7 +8716,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 1
+  m_PresetInfoIsWorld: 0
 --- !u!114 &1401664750406813172
 MonoBehaviour:
   m_ObjectHideFlags: 0
