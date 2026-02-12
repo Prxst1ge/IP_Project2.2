@@ -2208,14 +2208,9 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
---- !u!4 &441087507 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1717954561962503726, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
-  m_PrefabInstance: {fileID: 441087506}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &441087508 stripped
+--- !u!114 &441087507 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5283669349766710338, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
+  m_CorrespondingSourceObject: {fileID: 8386732153283789295, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
   m_PrefabInstance: {fileID: 441087506}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
@@ -2697,7 +2692,7 @@ PrefabInstance:
     - target: {fileID: 7057361762160868533, guid: d0bc5b6d3c65f874492e91f0925e18d3, type: 3}
       propertyPath: timerText
       value: 
-      objectReference: {fileID: 441087508}
+      objectReference: {fileID: 441087507}
     - target: {fileID: 8599246322768928845, guid: d0bc5b6d3c65f874492e91f0925e18d3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.98691
@@ -6844,52 +6839,6 @@ Transform:
   - {fileID: 336970915}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &2008096904
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2008096906}
-  - component: {fileID: 2008096905}
-  m_Layer: 0
-  m_Name: Spawn Point (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &2008096905
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2008096904}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05080d5e873451c44bad08b173f734a6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SpawnPosition
-  player: {fileID: 441087507}
-  spawnPoint: {fileID: 2008096906}
---- !u!4 &2008096906
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2008096904}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -11.34, y: 1.568, z: -50.43}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2019829822
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7663,7 +7612,6 @@ SceneRoots:
   - {fileID: 583112839}
   - {fileID: 1583180103}
   - {fileID: 1957210308}
-  - {fileID: 2008096906}
   - {fileID: 650938514}
   - {fileID: 351274074}
   - {fileID: 728066373}

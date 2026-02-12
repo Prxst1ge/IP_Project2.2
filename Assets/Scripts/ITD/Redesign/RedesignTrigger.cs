@@ -9,6 +9,8 @@ using System.Collections;
 
 public class RedesignTrigger : MonoBehaviour
 {
+    public Transform vrHeadset; // Player's head/camera transform
+
     public GameObject uiClue; // World Space UI Canvas here
     public GameObject explanationUI; // The "Why this design is better" info
 
@@ -17,11 +19,34 @@ public class RedesignTrigger : MonoBehaviour
     public LayerMask obstacleLayer = 1; // Default layer is 1
 
 
+    public float animationDuration = 2f; // How long the pop-up takes
+    public float spinAmount = 180f; // How much it spins during pop-up
+
+    private Vector3 clueTargetScale; // To store target scale for clue
+    private Vector3 explainTargetScale; // To store target scale for explanation
+    private bool isAnimating = false; // To prevent Update() conflicts  
+
     private void Start()
     {
-        // Ensure UI starts hidden
-        if (uiClue != null) uiClue.SetActive(false);
-        if (explanationUI != null) explanationUI.SetActive(false);
+        // Auto-assign VR Headset if not set
+        if (vrHeadset == null)
+        {
+            if (Camera.main != null) vrHeadset = Camera.main.transform;
+            else Debug.LogError("CRITICAL ERROR: No Camera found! Assign 'vrHeadset' in Inspector.");
+        }
+
+        // Memorize the correct size from the Inspector before we hide them
+        if (uiClue != null)
+        {
+            clueTargetScale = uiClue.transform.localScale;
+            uiClue.SetActive(false);
+        }
+
+        if (explanationUI != null)
+        {
+            explainTargetScale = explanationUI.transform.localScale;
+            explanationUI.SetActive(false);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -36,6 +61,8 @@ public class RedesignTrigger : MonoBehaviour
                 {
                     PositionUIInFrontOfPlayer(uiClue);
                     uiClue.SetActive(true);
+
+                    StartCoroutine(AnimatePopUp(uiClue, clueTargetScale));
                 }
             }
         }
@@ -60,40 +87,37 @@ public class RedesignTrigger : MonoBehaviour
 
     void Update()
     {
-        // For real-time tracking and updates
+        // If animating, let the Coroutine handle the position!
+        if (isAnimating) return;
+
         if (redesignScript.isRepaired && !redesignScript.explanationSeen)
         {
-            // Only run this IF the explanation is currently hidden
             if (explanationUI != null && !explanationUI.activeSelf)
             {
-                // Position it ONCE right now
-                PositionUIInFrontOfPlayer(explanationUI);
-
-                // Then turn it on (it will stay there)
                 explanationUI.SetActive(true);
+                StartCoroutine(AnimatePopUp(explanationUI, explainTargetScale));
             }
-
-            // Ensure Clue is hidden
             if (uiClue != null) uiClue.SetActive(false);
         }
-
-        // For clue tracking
         else if (uiClue != null && uiClue.activeSelf)
         {
-            // Run this EVERY FRAME so it follows player's face
-            PositionUIInFrontOfPlayer(uiClue);
-        }
-
-        else
-        {
-            // If explanation is seen, hide it
-            if (explanationUI != null && redesignScript.explanationSeen)
-            {
-                explanationUI.SetActive(false);
-            }
+            // Only track face if we are NOT animating (and not already done)
+            ForcePositionNow(uiClue);
         }
     }
 
+    void ResetRectTransform(GameObject obj)
+    {
+        // If the custom UI has a RectTransform with weird positions, fix it
+        RectTransform rect = obj.GetComponent<RectTransform>();
+        if (rect != null)
+        {
+            // Keep the pivot, but zero out the local position offset
+            rect.anchoredPosition3D = Vector3.zero;
+        }
+    }
+
+    // Function to position a UI object in front of the player's view
     void PositionUIInFrontOfPlayer(GameObject uiObject)
     {
         Camera playerCam = Camera.main;
@@ -125,5 +149,60 @@ public class RedesignTrigger : MonoBehaviour
         uiObject.transform.Rotate(0, 180, 0);
     }
 
+    // Coroutine to animate the pop-up effect
+    IEnumerator AnimatePopUp(GameObject uiObject, Vector3 finalSize)
+    {
+        isAnimating = true;
+        float timer = 0;
+
+        Vector3 startSize = Vector3.zero;
+        uiObject.transform.localScale = startSize;
+
+        while (timer < animationDuration)
+        {
+            float progress = timer / animationDuration;
+
+            // animate scale
+            float easeScale = 1 - Mathf.Pow(1 - progress, 3);
+            uiObject.transform.localScale = Vector3.Lerp(startSize, finalSize, easeScale);
+
+            // force position update
+            ForcePositionNow(uiObject);
+
+            // apply 
+            float currentSpin = Mathf.Lerp(spinAmount, 0, easeScale);
+            uiObject.transform.Rotate(0, currentSpin, 0);
+
+            timer += Time.deltaTime;
+            yield return null;
+        }
+
+        // Finalize
+        uiObject.transform.localScale = finalSize;
+        ForcePositionNow(uiObject); // Snap to final position one last time
+
+        isAnimating = false;
+    }
+    void ForcePositionNow(GameObject uiObject)
+    {
+        // Fallback if forgot to assign camera
+        if (vrHeadset == null)
+        {
+            if (Camera.main != null) vrHeadset = Camera.main.transform;
+            else return;
+        }
+
+        Vector3 cameraPos = vrHeadset.position;
+        Vector3 forwardDir = vrHeadset.forward;
+
+        // Calculate Position relative to CURRENT headset position
+        Vector3 finalPosition = cameraPos + (forwardDir * spawnDistance);
+
+        // Apply Position
+        uiObject.transform.position = finalPosition;
+
+        // Face the headset
+        uiObject.transform.LookAt(2 * uiObject.transform.position - vrHeadset.position);
+    }
 
 }

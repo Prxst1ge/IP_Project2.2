@@ -1530,6 +1530,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1717954561962503726, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
   m_PrefabInstance: {fileID: 441087506}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &441087515 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1767192434, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
+  m_PrefabInstance: {fileID: 441087506}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &451841720 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3597388847309176200, guid: b2c87b7871ed2954c9ede6026ba12e54, type: 3}
@@ -1781,6 +1786,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21f5fea4e7501794c8d6abedb9069472, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RedesignTrigger
+  vrHeadset: {fileID: 441087515}
   uiClue: {fileID: 83299752}
   explanationUI: {fileID: 890195776}
   redesignScript: {fileID: 403941565}
@@ -1788,6 +1794,8 @@ MonoBehaviour:
   obstacleLayer:
     serializedVersion: 2
     m_Bits: 1
+  animationDuration: 2
+  spinAmount: 180
 --- !u!1001 &679774756
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3441,6 +3449,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21f5fea4e7501794c8d6abedb9069472, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RedesignTrigger
+  vrHeadset: {fileID: 441087515}
   uiClue: {fileID: 83299751}
   explanationUI: {fileID: 890195777}
   redesignScript: {fileID: 1769913733}
@@ -3448,6 +3457,8 @@ MonoBehaviour:
   obstacleLayer:
     serializedVersion: 2
     m_Bits: 1
+  animationDuration: 2
+  spinAmount: 180
 --- !u!4 &1263610966
 Transform:
   m_ObjectHideFlags: 0

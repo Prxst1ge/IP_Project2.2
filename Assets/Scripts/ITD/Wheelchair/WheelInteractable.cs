@@ -49,7 +49,7 @@ public class WheelInteractable : XRBaseInteractable
         Debug.Log("Wheel selected");
         base.OnSelectEntered(eventArgs);
 
-        XRBaseInteractor interactor = eventArgs.interactorObject as XRBaseInteractor;
+        XRBaseInteractor interactor = eventArgs.interactorObject as XRBaseInteractor; // Get interactor from event args
 
         // Forcibly cancel selection with this wheel object.
         interactionManager.CancelInteractableSelection((IXRSelectInteractable)this);
@@ -83,11 +83,10 @@ public class WheelInteractable : XRBaseInteractable
         grabPoint.layer = gameObject.layer;
 
 
-        // Ensure the grab point uses the "Wheelchair" Interaction Layer.
-        // Without this, your hand (which is looking for "Wheelchair") will reject the default grab point.
+        // Configure grab point's XRGrabInteractable component.
         grabPoint.GetComponent<XRGrabInteractable>().interactionLayers = interactionLayers;
 
-        grabPoint.transform.position = interactor.transform.position;
+        grabPoint.transform.position = interactor.transform.position; // Position grab point at interactor's position.
 
         // Attach grab point to this wheel using fixed joint.
         grabPoint.GetComponent<FixedJoint>().connectedBody = GetComponent<Rigidbody>();
