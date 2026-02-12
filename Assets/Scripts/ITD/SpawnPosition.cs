@@ -13,11 +13,17 @@ public class SpawnPosition : MonoBehaviour
     public Transform player;      // Your Player object
     public Transform spawnPoint;  // The Empty GameObject you created
 
+    /// <summary>
+    /// Called when the scene starts to move the player to the spawn position.
+    /// </summary>
     void Start()
     {
         MovePlayerToSpawn();
     }
 
+    /// <summary>
+    /// Moves the player to the spawn point.
+    /// </summary>
     void MovePlayerToSpawn()
     {
         if (player == null || spawnPoint == null)

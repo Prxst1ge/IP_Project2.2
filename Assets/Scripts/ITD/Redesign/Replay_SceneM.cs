@@ -16,12 +16,18 @@ public class Replay_SceneM : MonoBehaviour
     private bool allTasksComplete = false;
     private bool levelIsLoading = false; // Safety switch to prevent crashing
 
+    /// <summary>
+    /// Initial setup
+    /// </summary>
     void Start()
     {
         // Ensure the exit door is hidden at the start
         if (exitDoorObject != null) exitDoorObject.SetActive(false);
     }
 
+    /// <summary>
+    /// Update is called once per frame
+    /// </summary>
     void Update()
     {
         // If tasks are already complete, no need to check again
@@ -46,6 +52,9 @@ public class Replay_SceneM : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Checks if all redesign items are repaired and explained
+    /// </summary>
     private bool CheckIfAllDone()
     {
         foreach (Redesign item in itemsToFix)

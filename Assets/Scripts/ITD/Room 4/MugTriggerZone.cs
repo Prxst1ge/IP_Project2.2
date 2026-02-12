@@ -1,7 +1,7 @@
 /*
  * Script Name: MugTriggerZone.cs
  * Student Name: Joel Wong Wan Hao
- * Date: 22/01/2026
+ * Date: 05/02/2026
  * Description: Triggers the next door when a coffee mug is delivered.
  */
 using UnityEngine;
@@ -13,11 +13,13 @@ public class MugTriggerZone : MonoBehaviour
     public string keycardTag = "Keycard"; // Keycard tag
     public GameObject nextDoorObject;        // The door we want to spawn
 
-    private bool hasMug = false;
-    private bool hasKeycard = false;
-    private bool doorOpened = false;
+    private bool hasMug = false;// Mug delivery flag
+    private bool hasKeycard = false;// 
+    private bool doorOpened = false;// Door opened flag
 
-    // automatically hide the door when the game begins
+    /// <summary>
+    /// Called when the scene starts to initialize the trigger zone.
+    /// </summary>
     void Start()
     {
         if (nextDoorObject != null)
@@ -30,6 +32,9 @@ public class MugTriggerZone : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Called when an object enters the trigger zone.
+    /// </summary>
     private void OnTriggerEnter(Collider other)
     {
         // Prevent running this multiple times
@@ -56,6 +61,10 @@ public class MugTriggerZone : MonoBehaviour
         }
         CheckForCompletion();
     }
+
+    /// <summary>
+    /// Checks if both items have been delivered and opens the next door.
+    /// </summary>
     private void CheckForCompletion()
     {
         // If both flags are true, open the door

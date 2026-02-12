@@ -27,7 +27,10 @@ public class AutomaticDoor : MonoBehaviour
     private bool isOpen = false;
     private Coroutine closeCoroutine;
 
-    void Update()
+    /// <summary>
+    /// Called when the scene starts to initialize the automatic door.
+    /// </summary>
+    void Start()
     {
         // Determine where the doors should be right now
         Vector3 targetLeft = isOpen ? leftOpenAnchor.localPosition : leftClosedAnchor.localPosition;
@@ -38,7 +41,9 @@ public class AutomaticDoor : MonoBehaviour
         rightDoor.localPosition = Vector3.MoveTowards(rightDoor.localPosition, targetRight, speed * Time.deltaTime);
     }
 
-
+    /// <summary>
+    /// Called when an object enters the trigger zone.
+    /// </summary>
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag(detectionTag))
@@ -52,7 +57,9 @@ public class AutomaticDoor : MonoBehaviour
         }
     }
 
-
+    /// <summary>
+    /// Called when an object exits the trigger zone.
+    /// </summary>
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag(detectionTag))
@@ -62,7 +69,9 @@ public class AutomaticDoor : MonoBehaviour
         }
     }
 
-    // The timer logic
+    /// <summary>
+    /// Coroutine to handle automatic door closing after a delay.
+    /// </summary>
     IEnumerator AutoCloseTimer()
     {
         yield return new WaitForSeconds(closeDelay);

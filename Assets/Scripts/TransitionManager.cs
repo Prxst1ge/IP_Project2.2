@@ -81,7 +81,7 @@ public class TransitionManager : MonoBehaviour
             logoImage.anchoredPosition = new Vector2(0, logoHiddenY);
     }
 
-    // Call this function from your door script
+    // To be called to start a scene transition
     public void LoadSceneWithTransition(string sceneName)
     {
         StartCoroutine(TransitionRoutine(sceneName));
@@ -108,6 +108,7 @@ public class TransitionManager : MonoBehaviour
         yield return StartCoroutine(AnimateTransition(false));
     }
 
+    // Coroutine to animate curtains and logo
     private IEnumerator AnimateTransition(bool isClosing)
     {
         float elapsedTime = 0f;

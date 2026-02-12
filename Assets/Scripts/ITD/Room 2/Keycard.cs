@@ -8,6 +8,8 @@ using UnityEngine;
 
 public class Keycard : MonoBehaviour
 {
-    // Unique identifier for the keycard
+    /// <summary>
+    /// A unique identifier for the keycard, which can be used to determine which doors it can unlock. This allows for multiple keycards with different access levels in the game.
+    /// </summary>
     public string keycardID;
 }

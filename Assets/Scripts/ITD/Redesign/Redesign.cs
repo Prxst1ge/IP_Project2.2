@@ -20,6 +20,9 @@ public class Redesign : MonoBehaviour
 
     public bool explanationSeen = false; // Whether the explanation UI has been seen
 
+    /// <summary>
+    /// Initial setup to ensure the broken object is active at start.
+    /// </summary>
     void Start()
     {
         // Ensure the correct starting state
@@ -27,7 +30,9 @@ public class Redesign : MonoBehaviour
         if (fixedObject != null) fixedObject.SetActive(false);
     }
 
-    // Method to perform the repair action
+    /// <summary>
+    /// Performs the repair action.
+    /// </summary>
     public void PerformRepair()
     {
         // Prevent repairing if it's already done

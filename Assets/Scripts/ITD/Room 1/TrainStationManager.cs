@@ -21,7 +21,9 @@ public class TrainStationManager : MonoBehaviour
 
     private bool hasSequenceStarted = false; // To prevent multiple starts
 
-
+    /// <summary>
+    /// Called when the scene starts to initialize the station sequence.
+    /// </summary>
     void Start()
     {
         // Ensure the choice colliders are hidden/disabled at start
@@ -29,7 +31,9 @@ public class TrainStationManager : MonoBehaviour
         if (wrongPlatformCollider) wrongPlatformCollider.SetActive(false);
     }
 
-    // Called by the VRElevator via the Inspector UnityEvent
+    /// <summary>
+    /// Checks if the doors are fully closed.
+    /// </summary>
     public void StartStationSequence()
     {
         if (hasSequenceStarted) return; // Prevents restarting if player rides lift again
@@ -43,6 +47,9 @@ public class TrainStationManager : MonoBehaviour
         StartCoroutine(PlayApproachSound());
     }
 
+    /// <summary>
+    /// Count down routine that waits for the specified time before activating the platform colliders.
+    /// </summary>
     private IEnumerator CountdownRoutine()
     {
         yield return new WaitForSeconds(countdownTime);
@@ -53,6 +60,10 @@ public class TrainStationManager : MonoBehaviour
 
         Debug.Log("Platforms are now active! Make your choice.");
     }
+
+    /// <summary>
+    /// Coroutine to play the train approach sound after a delay.
+    /// </summary>
     private IEnumerator PlayApproachSound()
     {
         // Wait for the specific delay

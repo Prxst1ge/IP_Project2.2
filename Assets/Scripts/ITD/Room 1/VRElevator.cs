@@ -10,19 +10,22 @@ using UnityEngine.Events;
 
 public class VRElevator : MonoBehaviour
 {
-    public Transform topStop;
-    public Transform bottomStop;
-    public float speed = 2.0f;
-    public float startDelay = 0.5f;
+    public Transform topStop; // Lift top position
+    public Transform bottomStop;// Lift bottom position
+    public float speed = 2.0f; // Speed of the elevator
+    public float startDelay = 0.5f; // Delay before starting movement
     public LiftDoor liftDoor; // Reference to the LiftDoor script
 
-    public UnityEvent onReachedBottom;
+    public UnityEvent onReachedBottom;// Event invoked when the elevator reaches the bottom
 
     // Internal state
-    private bool isMoving = false;
-    private Transform currentTarget;
-    private Rigidbody rb;
+    private bool isMoving = false; // Flag to indicate if the elevator is currently moving
+    private Transform currentTarget; // The current target position (top or bottom)
+    private Rigidbody rb; // Rigidbody reference for physics interactions
 
+    /// <summary>
+    /// Called when the scene starts to initialize the elevator.
+    /// </summary>
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -33,7 +36,9 @@ public class VRElevator : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
+    /// <summary>
+    /// Checks if the doors are fully closed.
+    /// </summary>
     void FixedUpdate() // Using FixedUpdate for physics consistency
     {
         if (isMoving && currentTarget != null)
@@ -59,9 +64,9 @@ public class VRElevator : MonoBehaviour
         }
     }
 
-    // BUTTON FUNCTIONS 
-
-    // For going UP
+    /// <summary>
+    /// Go up to the top stop, but only if the doors are fully closed and we aren't already at the top.
+    /// </summary>
     public void GoUp()
     {
         // Check if door is closed first
@@ -77,7 +82,9 @@ public class VRElevator : MonoBehaviour
         }
     }
 
-    // For going DOWN
+    /// <summary>
+    /// Go down to the bottom stop, but only if the doors are fully closed and we aren't already at the bottom.
+    /// </summary>
     public void GoDown()
     {
         // Check if door is closed first
@@ -92,18 +99,23 @@ public class VRElevator : MonoBehaviour
             StartCoroutine(StartMovingRoutine(bottomStop));
         }
     }
-    // --- THE DELAY LOGIC ---
+
+    /// <summary>
+    /// Starts the movement routine with a delay.
+    /// </summary>
     IEnumerator StartMovingRoutine(Transform target)
     {
-        // 1. Wait for the delay (allows physics to "settle" the player on the platform)
+        // Wait for the delay allows physics to "settle" the player on the platform
         yield return new WaitForSeconds(startDelay);
 
-        // 2. NOW start moving
+        // NOW start moving
         currentTarget = target;
         isMoving = true;
     }
 
-    // PLAYER STICKY LOGIC 
+    /// <summary>
+    /// When the player enters the elevator, we parent them to the elevator so they move together. When they exit, we unparent them.
+    /// </summary>
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player") || other.GetComponent<Rigidbody>() != null)
@@ -112,6 +124,9 @@ public class VRElevator : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// When the player enters the elevator, we parent them to the elevator so they move together. When they exit, we unparent them.
+    /// </summary>
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player") || other.GetComponent<Rigidbody>() != null)

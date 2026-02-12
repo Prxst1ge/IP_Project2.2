@@ -15,21 +15,17 @@ using UnityEngine.XR.Interaction.Toolkit.Interactors;
 
 public class WheelInteractable : XRBaseInteractable
 {
-    Rigidbody m_Rigidbody;
+    Rigidbody m_Rigidbody;// Rigidbody of the wheel
 
-    float wheelRadius;
+    float wheelRadius;// Wheel radius
 
-    bool onSlope = false;
-    [SerializeField] bool hapticsEnabled = true;
+    bool onSlope = false; // Whether the wheel is currently on a slope
+    [SerializeField] bool hapticsEnabled = true; // Whether haptic feedback is enabled on wheel interaction
 
-    [Range(0, 0.5f), Tooltip("Distance from wheel collider at which the interaction manager will cancel selection.")]
-    [SerializeField] float deselectionThreshold = 0.25f;
+    [SerializeField] float deselectionThreshold = 0.5f; // Distance from wheel collider surface to auto-deselect interactor
     SphereCollider m_SphereCollider; // Sphere collider of the wheel
 
-    GameObject grabPoint;
-
-    public Text label1;
-    public Text label2;
+    GameObject grabPoint;// Current grab point attached to this wheel
 
     // Initializes references
     private void Start()
@@ -43,7 +39,9 @@ public class WheelInteractable : XRBaseInteractable
         StartCoroutine(CheckForSlope());
     }
 
-    // When selection is made on this wheel object.
+    /// <summary
+    /// Called when the wheel is selected by an interactor.
+    /// </summary>
     protected override void OnSelectEntered(SelectEnterEventArgs eventArgs)
     {
         Debug.Log("Wheel selected");
@@ -66,7 +64,9 @@ public class WheelInteractable : XRBaseInteractable
     }
 
 
-    // Spawns a grab point at the interactor's position and attaches it to this wheel.
+    /// <summary
+    /// Spawns a grab point at the interactor's position and attaches it to the wheel.
+    /// </summary>
     void SpawnGrabPoint(XRBaseInteractor interactor)
     {
         // If there is an active grab point, cancel selection.
@@ -95,7 +95,9 @@ public class WheelInteractable : XRBaseInteractable
         interactionManager.SelectEnter((IXRSelectInteractor)interactor, (IXRSelectInteractable)grabPoint.GetComponent<XRGrabInteractable>());
     }
 
-    // Assists braking by applying counter-torque when the interactor's velocity is near zero.
+    /// <summary
+    /// Applies brake assist when interactor's velocity is near zero.
+    /// </summary>
     IEnumerator BrakeAssist(XRBaseInteractor interactor)
     {
         VelocitySupplier interactorVelocity = interactor.GetComponent<VelocitySupplier>();
@@ -114,7 +116,9 @@ public class WheelInteractable : XRBaseInteractable
         }
     }
 
-    // Monitors the distance between the interactor and the wheel's collider to auto-deselect if too far.
+    /// <summary
+    /// Monitors the distance between the interactor and the wheel collider center to auto-deselect when too far.
+    /// </summary>
     IEnumerator MonitorDetachDistance(XRBaseInteractor interactor)
     {
         while (grabPoint)
@@ -135,6 +139,9 @@ public class WheelInteractable : XRBaseInteractable
         }
     }
 
+    /// <summary
+    /// Sends haptic feedback to the interactor based on wheel deceleration.
+    /// </summary>
     IEnumerator SendHapticFeedback(UnityEngine.XR.Interaction.Toolkit.Interactors.XRBaseInteractor interactor)
     {
         // Interval between iterations of coroutine, in seconds.
@@ -172,9 +179,9 @@ public class WheelInteractable : XRBaseInteractable
         }
     }
 
-
-    /// This is a utility method which remaps a float value from one range to another.
-
+    /// <summary
+    /// Remaps a value from one range to another.
+    /// </summary>
     float Remap(float value, float from1, float to1, float from2, float to2)
     {
         return (value - from1) / (to1 - from1) * (to2 - from2) + from2;
@@ -183,6 +190,9 @@ public class WheelInteractable : XRBaseInteractable
         //float bValue = Mathf.Lerp(bLow, bHigh, normal);
     }
 
+    /// <summary
+    /// Continuously checks if the wheel is on a slope.
+    /// </summary>
     IEnumerator CheckForSlope()
     {
         while (true)
@@ -196,7 +206,9 @@ public class WheelInteractable : XRBaseInteractable
         }
     }
 
-    // Check whether the player hand is touching the wheel
+    /// <summary
+    /// Called when the collider enters a trigger.
+    /// </summary>
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player") || other.GetComponent<XRDirectInteractor>() != null)
@@ -206,7 +218,9 @@ public class WheelInteractable : XRBaseInteractable
         }
     }
 
-    // Called automatically when the collider leaves
+    /// <summary
+    /// Called when the wheel is deselected by an interactor.
+    /// </summary>
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player") || other.GetComponent<XRDirectInteractor>() != null)

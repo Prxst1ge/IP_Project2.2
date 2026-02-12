@@ -14,7 +14,10 @@ public class Scanner : MonoBehaviour
 
     // Events to invoke on card detection
     public UnityEvent OnCardEnter;
-    // Trigger detection for keycard entry
+
+    /// <summary>
+    /// When another collider enters the trigger zone, check if it has the valid tag keycard. If it does, invoke the OnCardEnter event to trigger any actions (like unlocking a door) that are subscribed to this event. 
+    /// </summary>
     private void OnTriggerEnter(Collider other)
     {
         // Unlock when card enters

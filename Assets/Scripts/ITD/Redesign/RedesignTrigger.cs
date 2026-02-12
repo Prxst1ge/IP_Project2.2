@@ -26,6 +26,9 @@ public class RedesignTrigger : MonoBehaviour
     private Vector3 explainTargetScale; // To store target scale for explanation
     private bool isAnimating = false; // To prevent Update() conflicts  
 
+    /// <summary>
+    /// Initial setup
+    /// </summary>
     private void Start()
     {
         // Auto-assign VR Headset if not set
@@ -49,6 +52,9 @@ public class RedesignTrigger : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Handles player entering the trigger zone
+    /// </summary>
     private void OnTriggerEnter(Collider other)
     {
         // Checks if the 'other' object is the VR Player (usually by Tag)
@@ -68,6 +74,9 @@ public class RedesignTrigger : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Handles player exiting the trigger zone
+    /// </summary>
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player")) // When player leaves trigger
@@ -76,7 +85,9 @@ public class RedesignTrigger : MonoBehaviour
         }
     }
 
-    // Called by the UI Button to close the explanation
+    /// <summary>
+    /// Called by UI Button to close the explanation
+    /// </summary>
     public void CloseExplanation()
     {
         // Tell the redesign script that explanation has been seen
@@ -85,6 +96,9 @@ public class RedesignTrigger : MonoBehaviour
         if (explanationUI != null) explanationUI.SetActive(false);
     }
 
+    /// <summary>
+    /// Update is called once per frame
+    /// </summary>
     void Update()
     {
         // If animating, let the Coroutine handle the position!
@@ -106,6 +120,9 @@ public class RedesignTrigger : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Resets RectTransform offsets to zero
+    /// </summary>
     void ResetRectTransform(GameObject obj)
     {
         // If the custom UI has a RectTransform with weird positions, fix it
@@ -117,7 +134,9 @@ public class RedesignTrigger : MonoBehaviour
         }
     }
 
-    // Function to position a UI object in front of the player's view
+    /// <summary>
+    /// Positions the given UI object in front of the player, avoiding walls.
+    /// </summary>
     void PositionUIInFrontOfPlayer(GameObject uiObject)
     {
         Camera playerCam = Camera.main;
@@ -149,7 +168,9 @@ public class RedesignTrigger : MonoBehaviour
         uiObject.transform.Rotate(0, 180, 0);
     }
 
-    // Coroutine to animate the pop-up effect
+    /// <summary>
+    /// Animate a UI object's scale from zero to a target size.
+    /// </summary>
     IEnumerator AnimatePopUp(GameObject uiObject, Vector3 finalSize)
     {
         isAnimating = true;
@@ -183,6 +204,10 @@ public class RedesignTrigger : MonoBehaviour
 
         isAnimating = false;
     }
+
+    /// <summary>
+    /// Immediately positions the UI object in front of the player
+    /// </summary>
     void ForcePositionNow(GameObject uiObject)
     {
         // Fallback if forgot to assign camera

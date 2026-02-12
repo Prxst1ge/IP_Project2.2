@@ -10,35 +10,39 @@ using System.Collections;
 public class LiftDoor : MonoBehaviour
 {
     // References to the door transforms
-    public Transform leftDoor;
-    public Transform rightDoor;
+    public Transform leftDoor; // Left door transform
+    public Transform rightDoor; // Right door transform
 
     // Anchors for open and closed positions
-    public Transform leftOpenAnchor;
-    public Transform leftClosedAnchor;
-    public Transform rightOpenAnchor;
-    public Transform rightClosedAnchor;
+    public Transform leftOpenAnchor; // Left door open position
+    public Transform leftClosedAnchor; // Left door closed position
+    public Transform rightOpenAnchor; // Right door open position
+    public Transform rightClosedAnchor; //  Right door closed position
 
     // Door movement parameters
-    public float speed = 2.0f;
-    public float openDuration = 3.0f;
+    public float speed = 2.0f; // Speed of door movement
+    public float openDuration = 3.0f; // Duration the door stays open
 
     // Door state
     private bool isOpen = false;
 
-
+    /// <summary>
+    /// Called every frame to update door positions.
+    /// </summary>
     void Update()
     {
         // Target the position of our Empty GameObjects
         Vector3 targetL = isOpen ? leftOpenAnchor.position : leftClosedAnchor.position;
         Vector3 targetR = isOpen ? rightOpenAnchor.position : rightClosedAnchor.position;
 
-        // Move toward those world positions
+        // Move the doors towards their target positions
         leftDoor.position = Vector3.MoveTowards(leftDoor.position, targetL, speed * Time.deltaTime);
         rightDoor.position = Vector3.MoveTowards(rightDoor.position, targetR, speed * Time.deltaTime);
     }
 
-    // Function to check if the door is fully closed
+    /// <summary>
+    /// Checks if the doors are fully closed.
+    /// </summary>
     public bool IsFullyClosed()
     {
         // Returns true only if the door is NOT set to open AND both doors are at their closed positions
@@ -48,7 +52,9 @@ public class LiftDoor : MonoBehaviour
         return !isOpen && distL < 0.01f && distR < 0.01f;
     }
 
-    // Function to open the door
+    /// <summary>
+    /// Opens the doors.
+    /// </summary>
     public void OpenDoor()
     {
         if (!isOpen)
@@ -58,7 +64,9 @@ public class LiftDoor : MonoBehaviour
         }
     }
 
-    // Coroutine to handle door open duration
+    /// <summary>
+    /// Coroutine to handle the timing of the door opening and closing.
+    /// </summary>
     IEnumerator DoorTimer()
     {
         isOpen = true;

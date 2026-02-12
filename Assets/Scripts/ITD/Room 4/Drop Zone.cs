@@ -1,7 +1,7 @@
 /*
  * Script Name: DropZone.cs
  * Student Name: Joel Wong Wan Hao
- * Date: 22/01/2026
+ * Date: 11/02/2026
  * Description: Triggers when the keycard or mug is dropped onto the ground.
  */
 using UnityEngine;
@@ -11,6 +11,9 @@ public class DropZone : MonoBehaviour
     public Transform mugTarget;      // Where the mug will spawn back to
     public Transform keycardTarget;  // Where the keycard will spawn back to
 
+    /// <summary>
+    /// Called when the scene starts to initialize the drop zone.
+    /// </summary>
     private void OnTriggerEnter(Collider other)
     {
         // Check if it is the Coffee Mug

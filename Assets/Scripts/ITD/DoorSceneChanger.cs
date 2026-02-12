@@ -15,7 +15,9 @@ public class DoorSceneChanger : MonoBehaviour
 
     private bool hasTriggered = false; // To prevent multiple triggers
 
-    // This runs when the player walks into the trigger
+    /// <summary>
+    /// Called when an object enters the trigger zone.
+    /// </summary>
     private void OnTriggerEnter(Collider other)
     {
         if (hasTriggered) return;
@@ -31,7 +33,9 @@ public class DoorSceneChanger : MonoBehaviour
         }
     }
 
-    // Loads the specified scene
+    /// <summary>
+    /// Loads the destination scene with transition.
+    /// </summary>
     private void LoadDestination()
     {
         if (!string.IsNullOrEmpty(sceneToLoad))

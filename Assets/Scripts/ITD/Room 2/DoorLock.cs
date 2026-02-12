@@ -18,12 +18,15 @@ public class DoorLock : MonoBehaviour
     public float speed = 2.0f;      // How fast it opens
     private bool isOpening = false; // Is the door currently opening?
 
+    /// <summary>
+    /// When the game starts, get the Rigidbody and HingeJoint components, save the original constraints, and lock the door immediately.
+    /// </summary>
     void Start()
     {
         doorRb = GetComponent<Rigidbody>(); // Get the Rigidbody component
         doorHinge = GetComponent<HingeJoint>(); // Get the HingeJoint component
 
-        // Save how the door moves normally (e.g., usually Freeze Rotation X and Z are set)
+        // Save how the door moves normally 
         unlockedConstraints = doorRb.constraints;
 
         // Lock the door immediately on Start
@@ -31,7 +34,9 @@ public class DoorLock : MonoBehaviour
     }
 
 
-    // Freezes the door physics so it cannot be pushed or pulled.
+    /// <summary>
+    /// Locks the door by freezing all movement and rotation, effectively making it immovable until unlocked.
+    /// </summary>
     public void LockDoor()
     {
         // FreezeAll stops the door from moving or rotating entirely.
@@ -39,11 +44,13 @@ public class DoorLock : MonoBehaviour
     }
 
 
-    // Restores physics so the door can swing.
+    /// <summary>
+    /// Unlocks the door by removing constraints and starts the opening animation around the hinge. It ensures that the door only starts opening if it's not already in the process of opening.
+    /// </summary>
 
     public void UnlockDoor()
     {
-        // If it's already opening, don't run this again
+        // Don't unlock again if already opening
         if (isOpening) return;
 
         Debug.Log("Door Unlocked: Starting Auto-Open");
@@ -54,6 +61,9 @@ public class DoorLock : MonoBehaviour
         StartCoroutine(AnimateOpenAroundHinge());
     }
 
+    /// <summary>
+    /// Animates the door opening by rotating it around the hinge's pivot point. It calculates the pivot point based on the HingeJoint's anchor and rotates the door incrementally until it reaches the target open angle. The door's Rigidbody is set to kinematic during this animation to allow for precise control over its movement without physics interference.
+    /// </summary>
     private IEnumerator AnimateOpenAroundHinge()
     {
         isOpening = true;
