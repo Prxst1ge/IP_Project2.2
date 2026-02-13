@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2892097416372007125}
   - component: {fileID: 528729188486135723}
   - component: {fileID: 8673428025618860051}
-  - component: {fileID: 6300365797248822766}
+  - component: {fileID: 5677262165896558339}
   m_Layer: 5
   m_Name: AchievementMenu
   m_TagString: Untagged
@@ -40,7 +40,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 30.76, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -7.045, y: 1.279}
+  m_AnchoredPosition: {x: -7.0450134, y: 1.2789917}
   m_SizeDelta: {x: 1.6, y: 1.14}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &2892097416372007125
@@ -88,7 +88,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 1
+  m_PresetInfoIsWorld: 0
 --- !u!114 &8673428025618860051
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -106,7 +106,7 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &6300365797248822766
+--- !u!114 &5677262165896558339
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -115,7 +115,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2127542594692771768}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a5c521780f87334c8ed8c0c2394219b, type: 3}
+  m_Script: {fileID: 11500000, guid: bc4391fafb76d1245be624a5f4bfc98b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AchievementMenuUI
   achievementUIList:
