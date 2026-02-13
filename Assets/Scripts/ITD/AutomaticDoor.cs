@@ -1,9 +1,9 @@
 /*
- * Script Name: AutomaticDoor.cs
- * Student Name: Joel Wong Wan Hao
- * Date: 02/02/2026
- * Description: this script manages the automatic opening and closing of doors.
- */
+* Script Name: AutomaticDoor.cs
+* Student Name: Joel Wong Wan Hao
+* Date: 02/02/2026
+* Description: this script manages the automatic opening and closing of doors.
+*/
 using UnityEngine;
 using System.Collections;
 
@@ -30,7 +30,7 @@ public class AutomaticDoor : MonoBehaviour
     /// <summary>
     /// Called when the scene starts to initialize the automatic door.
     /// </summary>
-    void Start()
+    void Update()
     {
         // Determine where the doors should be right now
         Vector3 targetLeft = isOpen ? leftOpenAnchor.localPosition : leftClosedAnchor.localPosition;
@@ -46,6 +46,7 @@ public class AutomaticDoor : MonoBehaviour
     /// </summary>
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log("Trigger Entered by: ");
         if (other.CompareTag(detectionTag))
         {
             isOpen = true;

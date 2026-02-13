@@ -1852,7 +1852,7 @@ PrefabInstance:
     - target: {fileID: 6046096305462317017, guid: bc4826a1f03660d4987bd70f5ff24705, type: 3}
       propertyPath: timerText
       value: 
-      objectReference: {fileID: 441087507}
+      objectReference: {fileID: 0}
     - target: {fileID: 8496301300501828750, guid: bc4826a1f03660d4987bd70f5ff24705, type: 3}
       propertyPath: m_Name
       value: Stopwatch
@@ -2273,17 +2273,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
---- !u!114 &441087507 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5283669349766710338, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
-  m_PrefabInstance: {fileID: 441087506}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1001 &464765004
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4185,6 +4174,10 @@ PrefabInstance:
     - target: {fileID: 4825743875246515154, guid: 6f2c7b0d6b642d240845641e85fcbfca, type: 3}
       propertyPath: m_Name
       value: Room2_Exp_Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 6106817743623434968, guid: 6f2c7b0d6b642d240845641e85fcbfca, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6716952444508968711, guid: 6f2c7b0d6b642d240845641e85fcbfca, type: 3}
       propertyPath: m_IsActive

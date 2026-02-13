@@ -2930,7 +2930,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9917fc358b4676842a1b29a7141ee6a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DoorSceneChanger
-  sceneToLoad: Room 4 Explanation
+  sceneToLoad: Hub Build
   debugMessage: Player entered the door!
 --- !u!65 &92312009
 BoxCollider:
@@ -5003,6 +5003,52 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2962221006402368944, guid: a79367c339df17148b78224a67ec4ec3, type: 3}
   m_PrefabInstance: {fileID: 187492189}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &190640420
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 190640422}
+  - component: {fileID: 190640421}
+  m_Layer: 0
+  m_Name: Spawn Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &190640421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 190640420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05080d5e873451c44bad08b173f734a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpawnPosition
+  player: {fileID: 441087507}
+  spawnPoint: {fileID: 190640422}
+--- !u!4 &190640422
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 190640420}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -10.647, y: 1.33, z: -10.05}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &192389024
 GameObject:
   m_ObjectHideFlags: 0
@@ -11883,6 +11929,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 228513615}
   m_SourcePrefab: {fileID: 100100000, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
+--- !u!4 &441087507 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1717954561962503726, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
+  m_PrefabInstance: {fileID: 441087506}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &441087508 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8386732153283789295, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
@@ -41789,19 +41840,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1928268737025389924, guid: 6c643e57a70fb7f428950e72994a3796, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.679
+      value: -2.326
       objectReference: {fileID: 0}
     - target: {fileID: 1928268737025389924, guid: 6c643e57a70fb7f428950e72994a3796, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.0000029504295
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 1928268737025389924, guid: 6c643e57a70fb7f428950e72994a3796, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 1
+      value: 0.0000059604645
       objectReference: {fileID: 0}
     - target: {fileID: 1928268737025389924, guid: 6c643e57a70fb7f428950e72994a3796, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 4.2730713
+      value: 4.3669434
       objectReference: {fileID: 0}
     - target: {fileID: 1928268737025389924, guid: 6c643e57a70fb7f428950e72994a3796, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -41809,7 +41860,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1928268737025389924, guid: 6c643e57a70fb7f428950e72994a3796, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 180
+      value: 359.999
       objectReference: {fileID: 0}
     - target: {fileID: 6757957572995516474, guid: 6c643e57a70fb7f428950e72994a3796, type: 3}
       propertyPath: m_Pivot.x
@@ -53932,13 +53983,10 @@ SceneRoots:
   - {fileID: 1657851087}
   - {fileID: 1863916826}
   - {fileID: 4189457120635696133}
-  - {fileID: 192389025}
   - {fileID: 1994054827}
   - {fileID: 1828454354}
-  - {fileID: 454886914}
   - {fileID: 319154499}
   - {fileID: 2085620194}
-  - {fileID: 1796656940}
   - {fileID: 503380206}
   - {fileID: 1168913655}
   - {fileID: 1565982848}
@@ -53946,5 +53994,9 @@ SceneRoots:
   - {fileID: 783335503}
   - {fileID: 2076014637}
   - {fileID: 1280513548}
-  - {fileID: 426783563}
   - {fileID: 1639520299}
+  - {fileID: 192389025}
+  - {fileID: 1796656940}
+  - {fileID: 426783563}
+  - {fileID: 454886914}
+  - {fileID: 190640422}

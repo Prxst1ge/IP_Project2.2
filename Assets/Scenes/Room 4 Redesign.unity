@@ -11760,6 +11760,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 228513615}
   m_SourcePrefab: {fileID: 100100000, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
+--- !u!4 &441087507 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1717954561962503726, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
+  m_PrefabInstance: {fileID: 441087506}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &441087508 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8386732153283789295, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
@@ -22010,6 +22015,52 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 633760017206241351, guid: 8ba4b22d339248a4e83d0e80f2a67eaf, type: 3}
   m_PrefabInstance: {fileID: 884909526}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &888071508
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 888071510}
+  - component: {fileID: 888071509}
+  m_Layer: 0
+  m_Name: Spawn Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &888071509
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 888071508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05080d5e873451c44bad08b173f734a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpawnPosition
+  player: {fileID: 441087507}
+  spawnPoint: {fileID: 888071510}
+--- !u!4 &888071510
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 888071508}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -10.647, y: 1.33, z: -10.05}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &890298945
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -53390,3 +53441,4 @@ SceneRoots:
   - {fileID: 356480081}
   - {fileID: 1215934065}
   - {fileID: 2088516411}
+  - {fileID: 888071510}
