@@ -25,6 +25,9 @@ public class TransitionManager : MonoBehaviour
 
     private Canvas myCanvas; // Reference to the Canvas component
 
+    /// <summary>
+    ///  Awake is called when the script instance is being loaded. We use it to set up our singleton and find the Canvas component.
+    /// </summary>
     private void Awake()
     {
         // Singleton Pattern
@@ -42,7 +45,9 @@ public class TransitionManager : MonoBehaviour
         }
     }
 
-    // This runs automatically every time a scene finishes loading
+    /// <summary>
+    /// OnSceneLoaded is called every time a new scene is loaded. We use it to update the Canvas's worldCamera reference to the new scene's main camera.
+    /// </summary>
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         Camera newCamera = Camera.main;
@@ -61,18 +66,25 @@ public class TransitionManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// OnEnable is called when the object becomes enabled and active. We use it to start listening for scene load events.
+    /// </summary>
     private void OnEnable()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
-    // Stop Listening when destroyed
+    /// <summary>
+    /// OnDisable is called when the behaviour becomes disabled or inactive. We use it to stop listening for scene load events to prevent memory leaks.
+    /// </summary>
     private void OnDisable()
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
-
+    /// <summary>
+    /// Start is called before the first frame update. We use it to initialize the curtains and logo to their starting positions (curtains open, logo hidden).
+    /// </summary>
     private void Start()
     {
         // Curtains open (Scale 0), Logo hidden (Top)
@@ -81,12 +93,17 @@ public class TransitionManager : MonoBehaviour
             logoImage.anchoredPosition = new Vector2(0, logoHiddenY);
     }
 
-    // To be called to start a scene transition
+    /// <summary>
+    /// LoadSceneWithTransition is the public method that other scripts can call to start a scene transition. It takes the name of the scene to load as a parameter and starts the transition coroutine.
+    /// </summary>
     public void LoadSceneWithTransition(string sceneName)
     {
         StartCoroutine(TransitionRoutine(sceneName));
     }
 
+    /// <summary>
+    /// TransitionRoutine is the main coroutine that handles the entire transition process. It first animates the curtains closing and the logo dropping, then loads the new scene asynchronously, waits for it to finish loading, and finally animates the curtains opening and the logo rising back up.
+    /// </summary>
     private IEnumerator TransitionRoutine(string sceneName)
     {
         // Close Curtains & Drop Logo
@@ -108,7 +125,9 @@ public class TransitionManager : MonoBehaviour
         yield return StartCoroutine(AnimateTransition(false));
     }
 
-    // Coroutine to animate curtains and logo
+    /// <summary>
+    /// AnimateTransition is a coroutine that animates the curtains and logo either closing (if isClosing is true) or opening (if isClosing is false). It uses a smooth step interpolation to make the movement feel natural. The curtains scale on the X axis from 0 to 1 when closing, and from 1 to 0 when opening. The logo moves vertically from hiddenY to visibleY when closing, and back up when opening.
+    /// </summary>
     private IEnumerator AnimateTransition(bool isClosing)
     {
         float elapsedTime = 0f;
@@ -147,6 +166,9 @@ public class TransitionManager : MonoBehaviour
         if (logoImage != null) logoImage.anchoredPosition = new Vector2(0, endLogoY);
     }
 
+    /// <summary>
+    /// SetCurtainScale is a helper method that sets the scale of both curtains on the X axis. A scale of 0 means the curtains are fully open (invisible), and a scale of 1 means the curtains are fully closed (covering the screen). We only modify the X scale to create a horizontal opening/closing effect, while keeping the Y scale at 1 to maintain full height.
+    /// </summary>
     private void SetCurtainScale(float scaleX)
     {
         // Apply scale to X axis only
