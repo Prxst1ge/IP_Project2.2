@@ -10,7 +10,7 @@ using System.Collections;
 public class SpawnPosition : MonoBehaviour
 {
     [Header("Drag Objects Here")]
-    public Transform player;      // Your Player object
+    public Transform player;      // Player object
     public Transform spawnPoint;  // The Empty GameObject you created
 
     /// <summary>
@@ -32,7 +32,7 @@ public class SpawnPosition : MonoBehaviour
             return;
         }
 
-        // If the player uses a CharacterController, we must disable it briefly
+        // If the player uses a CharacterController will disable it briefly
         CharacterController cc = player.GetComponent<CharacterController>();
         if (cc != null) cc.enabled = false;
 
